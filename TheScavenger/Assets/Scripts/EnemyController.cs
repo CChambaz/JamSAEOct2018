@@ -25,6 +25,9 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField]
     float speed;
+    SpriteRenderer renderer;
+    [SerializeField]
+    float attackDistance;
 
     bool flipped = false;
     private Vector3 walkDir=new Vector3(1,0,0);
@@ -33,7 +36,7 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         state = EnemyState.Idle;
-       
+        renderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -45,11 +48,11 @@ public class EnemyController : MonoBehaviour
         {
             case EnemyState.Idle:
                 float distance = Vector3.Distance(transform.position, player.transform.position);
-                if (distance > 1f) SearchPlayer();
+                if (distance > attackDistance) SearchPlayer();
                 break;
             case EnemyState.Walk:
                  distance = Vector3.Distance(transform.position, player.transform.position);
-                if (distance< 1f)
+                if (distance< 3f)
                 {
                     //Attack
                     walkDir = new Vector3(-walkDir.x, 0);
@@ -85,7 +88,7 @@ public class EnemyController : MonoBehaviour
     private void SearchPlayer()
     {
         float distance = Vector3.Distance(transform.position, player.transform.position);
-        if (distance<=distanceRange&&distance>1f)
+        if (distance<=distanceRange&&distance>attackDistance)
         {
            
             TurnToPlayer();
@@ -122,24 +125,44 @@ public class EnemyController : MonoBehaviour
         {
             if (walkDir.x <= 0)
                 walkDir.x = 1;
+
+            if(flipped)
+            {
+                renderer.flipX=false;
+                flipped = false;
+            }
+            anim.SetBool("isWalkingH", true);
         }
         else
         {
             if (distanceX < 0)
                 if (walkDir.x >= 0)
                 walkDir.x = -1;
+
+            if (!flipped)
+            {
+                renderer.flipX = true;
+                flipped = true;
+            }
+            anim.SetBool("isWalkingH", true);
         }
 
             if (distanceY > 0)
             {
             if (walkDir.y <= 0)
                 walkDir.y = 1;
+
+            anim.SetBool("isWalkingUp", true);
+            anim.SetBool("isWalkingDown", false);
         }
             else
             {
             if (distanceY < 0)
                 if (walkDir.y >= 0)
                 walkDir.y = -1;
+
+            anim.SetBool("isWalkingUp", false);
+            anim.SetBool("isWalkingDown", true);
         }
         }
     
