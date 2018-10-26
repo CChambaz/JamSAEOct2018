@@ -8,7 +8,7 @@ public class PlayerRage : MonoBehaviour
     [SerializeField] int energyUseRate;
     [SerializeField] int rageMultiplier; 
 
-    public int activeRageMultiplier;
+    public int activeRageMultiplier = 1;
 
     int actualEnergy;
 
@@ -24,7 +24,7 @@ public class PlayerRage : MonoBehaviour
         if (Input.GetKey(KeyCode.E))
             EnableRage();
 
-        if (activeRageMultiplier > 0)
+        if (activeRageMultiplier > 1)
             CheckRageStatus();
     }
 
@@ -36,9 +36,9 @@ public class PlayerRage : MonoBehaviour
     void EnableRage()
     {
         // Disable rage if active
-        if (activeRageMultiplier > 0)
+        if (activeRageMultiplier > 1)
         {
-            activeRageMultiplier = 0;
+            activeRageMultiplier = 1;
             return;
         }
         else if (actualEnergy > 0)
@@ -50,7 +50,7 @@ public class PlayerRage : MonoBehaviour
     void CheckRageStatus()
     {
         if (actualEnergy <= 0)
-            activeRageMultiplier = 0;
+            activeRageMultiplier = 1;
 
         if (actualEnergy > 0)
             actualEnergy -= energyUseRate;        

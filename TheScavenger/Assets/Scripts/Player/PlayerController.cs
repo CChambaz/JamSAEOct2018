@@ -7,12 +7,22 @@ public class PlayerController : MonoBehaviour
     [Header("Movement attributs")]
     [SerializeField] float moveSpeed;
 
+    [Header("Dash attributs")]
+    [SerializeField] float dashSpeed;
+    [SerializeField] float dashDuration;
+    [SerializeField] float dashCoolDown;
+
     int movementUp;
     int movementDown;
     int movementRight;
     int movementLeft;
 
+    float dashStartAt = 0;
+    float lastDashAt = 0;
+
     PlayerRage rage;
+
+    public bool isDashing = false;
 
     private void Start()
     {
@@ -22,7 +32,21 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isDashing)
+        {
+            if (Time.time > dashStartAt + dashDuration)
+                EndDash();
+            else
+            {
+                Dash();
+                return;
+            }
+        }
+
         Move();
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+            StartDash();
     }
 
     private void Move()
@@ -53,5 +77,28 @@ public class PlayerController : MonoBehaviour
 
         if (moveVector != Vector3.zero)
             transform.position += moveVector * Time.deltaTime;
+    }
+
+    void StartDash()
+    {
+        isDashing = true;
+
+        dashStartAt = Time.time;
+    }
+
+    void Dash()
+    {
+        Vector3 dashVector = new Vector3(movementRight - movementLeft, movementUp - movementDown);
+
+        dashVector *= dashSpeed * rage.activeRageMultiplier;
+
+        transform.position += dashVector * Time.deltaTime;
+    }
+
+    void EndDash()
+    {
+        isDashing = false;
+
+        lastDashAt = Time.time;
     }
 }
