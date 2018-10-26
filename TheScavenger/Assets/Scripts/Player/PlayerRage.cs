@@ -5,11 +5,10 @@ using UnityEngine;
 public class PlayerRage : MonoBehaviour
 {
     [Header("Rage attribut")]
-    [SerializeField] int energyRequired;
     [SerializeField] int energyUseRate;
-    [SerializeField] int activeRageMultiplier;
+    [SerializeField] int rageMultiplier; 
 
-    public int rageMultiplier;
+    public int activeRageMultiplier;
 
     int actualEnergy;
 
@@ -25,7 +24,7 @@ public class PlayerRage : MonoBehaviour
         if (Input.GetKey(KeyCode.E))
             EnableRage();
 
-        if (rageMultiplier > 0)
+        if (activeRageMultiplier > 0)
             CheckRageStatus();
     }
 
@@ -37,21 +36,21 @@ public class PlayerRage : MonoBehaviour
     void EnableRage()
     {
         // Disable rage if active
-        if (rageMultiplier > 0)
+        if (activeRageMultiplier > 0)
         {
-            rageMultiplier = 0;
+            activeRageMultiplier = 0;
             return;
         }
         else if (actualEnergy > 0)
         {
-            rageMultiplier = activeRageMultiplier;
+            activeRageMultiplier = rageMultiplier;
         }
     }
 
     void CheckRageStatus()
     {
         if (actualEnergy <= 0)
-            rageMultiplier = 0;
+            activeRageMultiplier = 0;
 
         if (actualEnergy > 0)
             actualEnergy -= energyUseRate;        

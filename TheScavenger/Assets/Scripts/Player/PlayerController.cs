@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
         Vector3 moveVector = new Vector3(movementRight - movementLeft, movementUp - movementDown);
 
-        moveVector *= moveSpeed * rage.rageMultiplier;
+        moveVector *= moveSpeed * rage.activeRageMultiplier;
 
         if (moveVector != Vector3.zero)
             transform.position += moveVector * Time.deltaTime;
