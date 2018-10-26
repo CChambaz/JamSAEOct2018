@@ -22,7 +22,7 @@ ExportedObj/
 *.unityproj
 *.booproj
 *.tmp
-Examples.meta
+*.meta
  
 # ============ #
 # OS generated #
