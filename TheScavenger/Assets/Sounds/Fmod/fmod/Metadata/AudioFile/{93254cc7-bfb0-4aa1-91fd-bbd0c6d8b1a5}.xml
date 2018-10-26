@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{93254cc7-bfb0-4aa1-91fd-bbd0c6d8b1a5}">
+        <property name="assetPath">
+            <value>Wolf - Follow.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>4.7999999999999998</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{20729f5e-d0ce-438d-ab9a-0927bc4759ed}</destination>
+        </relationship>
+    </object>
+</objects>

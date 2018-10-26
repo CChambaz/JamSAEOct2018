@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{2523f065-a1cf-44c8-a97c-5f5ea9be65b3}">
+        <property name="assetPath">
+            <value>qubodup-megaswosh1.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>0.52868480725623579</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{20729f5e-d0ce-438d-ab9a-0927bc4759ed}</destination>
+        </relationship>
+    </object>
+</objects>
