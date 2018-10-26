@@ -12,6 +12,7 @@ UnityGenerated/
 # Visual Studio / MonoDevelop generated #
 # ===================================== #
 ExportedObj/
+.vs/
 *.svd
 *.userprefs
 *.csproj
