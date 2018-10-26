@@ -12,6 +12,13 @@ public class PlayerController : MonoBehaviour
     int movementRight;
     int movementLeft;
 
+    PlayerRage rage;
+
+    private void Start()
+    {
+        rage = GetComponent<PlayerRage>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -42,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
         Vector3 moveVector = new Vector3(movementRight - movementLeft, movementUp - movementDown);
 
-        moveVector *= moveSpeed;
+        moveVector *= moveSpeed * rage.rageMultiplier;
 
         if (moveVector != Vector3.zero)
             transform.position += moveVector * Time.deltaTime;
