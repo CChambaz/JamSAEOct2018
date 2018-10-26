@@ -1,45 +1,43 @@
 # =============== #
 # Unity generated #
 # =============== #
-[Tt]emp/
-[Oo]bj/
-[Bb]uild
-/[Bb]uilds/
+UnityGenerated/
 /[Ll]ibrary/
-sysinfo.txt
-*.stackdump
-/Assets/AssetStoreTools*
-*.apk
-*.unitypackage
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+[Ee]xamples/
  
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
 # ===================================== #
-[Ee]xported[Oo]bj/
-.vs/
-/*.userprefs
-/*.csproj
-/*.pidb
-*.pidb.meta
-/*.suo
-/*.sln*
-/*.user
-/*.unityproj
-/*.booproj
-.consulo/
-/*.tmp
-/*.svd
+ExportedObj/
+*.svd
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln
+*.user
+*.unityproj
+*.booproj
+*.tmp
+Examples.meta
  
 # ============ #
 # OS generated #
 # ============ #
-.DS_Store*
+.DS_Store
+.DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
 Icon?
 ehthumbs.db
-[Tt]humbs.db
-[Dd]esktop.ini
-Corridor/Library/ShaderCache/
-Corridor/Library/metadata/
+Thumbs.db
+
+# Unity3D generated meta files
+*.pidb.meta
+
+# Unity3D Generated File On Crash Reports
+sysinfo.txt
