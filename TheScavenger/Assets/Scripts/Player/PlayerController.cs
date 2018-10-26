@@ -210,7 +210,7 @@ public class PlayerController : MonoBehaviour
     {
         isAttacking = true;
 
-        animator.SetBool("isAttacking", false);
+        animator.SetBool("isAttacking", true);
 
         switch(actualOrientation)
         {
@@ -236,7 +236,7 @@ public class PlayerController : MonoBehaviour
         attackRightCollider.gameObject.SetActive(false);
         attackLeftCollider.gameObject.SetActive(false);
 
-        animator.SetBool("isAttacking", true);
+        animator.SetBool("isAttacking", false);
 
         isAttacking = false;
     }
