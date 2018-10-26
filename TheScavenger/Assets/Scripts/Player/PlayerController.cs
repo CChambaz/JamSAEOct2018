@@ -12,12 +12,6 @@ public class PlayerController : MonoBehaviour
     int movementRight;
     int movementLeft;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -50,6 +44,7 @@ public class PlayerController : MonoBehaviour
 
         moveVector *= moveSpeed;
 
-        transform.position += moveVector * Time.deltaTime;
+        if (moveVector != Vector3.zero)
+            transform.position += moveVector * Time.deltaTime;
     }
 }
