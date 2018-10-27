@@ -57,7 +57,7 @@ public class PlayerUI : MonoBehaviour
         float actualLife = (float)playerStats.activeLife;
         float totalLife= (float)playerStats.maxLife;
 
-        StartCoroutine(Fill(imgHealth, actualLife / totalLife));
+        //StartCoroutine(Fill(imgHealth, actualLife / totalLife));
 
         previousLife = (int)actualLife;
     }
@@ -67,9 +67,13 @@ public class PlayerUI : MonoBehaviour
         for (int i = 0; i < playerStats.maxTotalArmor; i++)
         {
             if (i >= playerStats.activeArmor)
-                StartCoroutine(Fill(shieldList[i], 0));
+            {
+                //StartCoroutine(Fill(shieldList[i], 0));
+            }
             else
-                StartCoroutine(Fill(shieldList[i], 1));
+            {
+                //StartCoroutine(Fill(shieldList[i], 1));
+            }
         }
 
         previousShield = playerStats.activeArmor;
@@ -80,23 +84,23 @@ public class PlayerUI : MonoBehaviour
         float actualEnergy = playerRage.actualEnergy;
         float totalEnergy = playerRage.maxEnergy;
 
-        StartCoroutine(Fill(imgEnergy, actualEnergy / totalEnergy));
+        //StartCoroutine(Fill(imgEnergy, actualEnergy / totalEnergy));
 
         previousEnergy = actualEnergy;
     }
 
-    IEnumerator Fill(Image imageToFill, float fillGoal)
-    {
-        while (imageToFill.fillAmount != fillGoal)
-        {
-            imageToFill.fillAmount = Mathf.Lerp(imageToFill.fillAmount, fillGoal, fillSpeed);
+    //IEnumerator Fill(Image imageToFill, float fillGoal)
+    //{
+    //    while (imageToFill.fillAmount != fillGoal)
+    //    {
+    //        imageToFill.fillAmount = Mathf.Lerp(imageToFill.fillAmount, fillGoal, fillSpeed);
 
-            if(imageToFill.fillAmount < 0)
-                imageToFill.fillAmount = 0;
-            else if(imageToFill.fillAmount > 1)
-                imageToFill.fillAmount = 1;
+    //        if(imageToFill.fillAmount < 0)
+    //            imageToFill.fillAmount = 0;
+    //        else if(imageToFill.fillAmount > 1)
+    //            imageToFill.fillAmount = 1;
 
-            yield return new WaitForEndOfFrame();
-        }
-    }
+    //        yield return new WaitForEndOfFrame();
+    //    }
+    //}
 }
