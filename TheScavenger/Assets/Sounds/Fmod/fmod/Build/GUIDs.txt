@@ -1,0 +1,14 @@
+{3bca0e60-951d-4f10-b384-7a20fe981ae2} event:/Musics/WhenTheWildWindBlows
+{fc737c12-d92f-484d-af8a-38afc335aa5a} event:/Musics/WhenTwoWorldsCollide
+{ea700482-29bd-4714-90ec-b5e831ed70f4} event:/SoundEffects/Axe/Axe
+{730c147d-aef0-49c7-9eeb-0345e7e8a5f2} event:/SoundEffects/Characters/Wolf/Wolf - Attack
+{17a5857d-5533-4b1c-9cae-9d19341060b2} event:/SoundEffects/Characters/Wolf/Wolf - Follow
+{34c59412-1421-4fbb-b27b-518759ab6210} event:/SoundEffects/Characters/Wolf/Wolf - Walk
+{95bdd6d8-4e39-4dc5-aa65-86288e5e37f5} event:/SoundEffects/Hammer/Hammer
+{248ec8e4-b940-4bc7-8861-d2f7022b2080} event:/SoundEffects/Life/LowLife
+{88f79f54-f706-4754-b614-86674869775d} event:/SoundEffects/Shield/Make Shield
+{9b25bd70-adbb-4298-b117-d8b2acbb9eee} event:/SoundEffects/Shield/Shield Destroy
+{9faaa30b-fad6-4b06-8070-01c9770fabbd} event:/SoundEffects/Recup Scrap
+{ceba5d89-4ac2-4a20-8004-1b7b389787b7} bus:/
+{da31886c-d8f1-4213-9daf-bb4fda73d2d6} bus:/Reverb
+{b660be11-c350-4340-be1e-845c9e23b449} bank:/Master Bank
