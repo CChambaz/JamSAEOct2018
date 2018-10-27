@@ -68,6 +68,12 @@ public class PlayerLife : MonoBehaviour
         if (maxArmor == maxTotalArmor && canIncreaseMaxArmor)
             return;
 
-        activeArmor += armorAdded;
+        if (activeArmor == maxArmor)
+            return;
+
+        if (activeArmor + armorAdded > maxArmor)
+            activeArmor = maxArmor;
+        else
+            activeArmor += armorAdded;
     }
 }

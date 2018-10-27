@@ -6,13 +6,19 @@ using UnityEngine.UI;
 public class InterLevelMenu : MonoBehaviour
 {
     [Header("Inter-Level components")]
-    [SerializeField] CanvasGroup interCanvas;
+    [SerializeField] public CanvasGroup interCanvas;
     [SerializeField] Image increaseLife;
     [SerializeField] Image increaseArmor;
     [SerializeField] Image increaseDamage;
 
+    [Header("Cost values")]
+    [SerializeField] int addArmorCost;
+    [SerializeField] int addLifeCost;
+    [SerializeField] int addDamageCost;
+
     [Header("Fade attributs")]
     [SerializeField] float fadeSpeed;
+    [SerializeField] float fadeApproximation;
 
     PlayerController playerController;
     PlayerLife playerLife;
@@ -34,24 +40,39 @@ public class InterLevelMenu : MonoBehaviour
             StartCoroutine(Fade(0));
     }
 
+    // Insert in these three function the scrap cost
     public void AddArmor(int amount)
     {
         playerLife.IncreaseArmor(amount, true);
     }
 
+    public void AddLife(int amount)
+    {
+        playerLife.ChangeLife(amount);
+    }
+
+    public void AddDamage(int amount)
+    {
+        playerController.IncreaseDamage(amount);
+    }
+
     IEnumerator Fade(float fadeGoal)
     {
-        if(fadeGoal > 0)
-            interCanvas.gameObject.SetActive(true);
-
         while(interCanvas.alpha != fadeGoal)
         {
             interCanvas.alpha = Mathf.Lerp(interCanvas.alpha, fadeGoal, fadeSpeed);
+
+            if (fadeGoal == 1 && interCanvas.alpha + fadeApproximation >= fadeGoal)
+                interCanvas.alpha = fadeGoal;
+            else if (fadeGoal == 0 && interCanvas.alpha - fadeApproximation <= fadeGoal)
+                interCanvas.alpha = fadeGoal;
 
             yield return new WaitForEndOfFrame();
         }
 
         if (fadeGoal == 0)
-            interCanvas.gameObject.SetActive(false);
+            interCanvas.interactable = false;
+        else
+            interCanvas.interactable = true;
     }
 }

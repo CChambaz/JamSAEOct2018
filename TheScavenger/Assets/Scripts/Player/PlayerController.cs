@@ -39,6 +39,10 @@ public class PlayerController : MonoBehaviour
     float lastDashAt = 0;
 
     PlayerRage rage;
+    MainMenu mainMenu;
+    InterLevelMenu interMenu;
+    PauseMenu pauseMenu;
+
     Animator animator;
     SpriteRenderer renderer;
 
@@ -49,6 +53,10 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rage = GetComponent<PlayerRage>();
+        mainMenu = FindObjectOfType<MainMenu>();
+        interMenu = FindObjectOfType<InterLevelMenu>();
+        pauseMenu = FindObjectOfType<PauseMenu>();
+
         animator = GetComponent<Animator>();
         renderer = GetComponent<SpriteRenderer>();
         actualOrientation = Orientation.HORIZONTAL;
@@ -57,7 +65,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isAttacking)
+        if (isAttacking || pauseMenu.pausePanel.interactable || mainMenu.mainMenuCanvas.interactable || interMenu.interCanvas.interactable)
             return;
 
         if (isDashing)
@@ -73,10 +81,10 @@ public class PlayerController : MonoBehaviour
 
         Move();
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing)
             StartDash();
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking)
             StartAttack();
 
         if(!isMoving)
