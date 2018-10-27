@@ -42,23 +42,25 @@ public class CameraManager : MonoBehaviour
             switch (state)
             {
                 case stateCamera.Find:
-                    newPositionCamera = Vector2.zero;
 
+                    newPositionCamera = Vector2.zero;
                     int i = 0;
+
                     foreach (var monsterIsAttacking in monstersIsAttacking)
                     {
                         newPositionCamera += Vector2.Lerp(target.position, monsterIsAttacking.position, 0.5f);
                         i++;
                     }
+
                     newPositionCamera /= i;
-                    //transform.position = new Vector3(newPositionCamera.x, newPositionCamera.y, -10);
                     state = stateCamera.MoveTo;
                     break;
+
                 case stateCamera.MoveTo:
                     Vector3 position = transform.position;
                     transform.position = Vector3.Lerp(position, (Vector3)newPositionCamera - (Vector3.forward * 10), smoothSpeed);
                     Debug.Log((newPositionCamera - (Vector2)position).magnitude);
-                    if ((newPositionCamera - (Vector2)position).magnitude < 0.5f)
+                    if ((newPositionCamera - (Vector2)position).magnitude <= smoothSpeed)
                     {
                         state = stateCamera.Find;
                     }
