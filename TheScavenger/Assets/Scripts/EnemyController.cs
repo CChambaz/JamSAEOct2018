@@ -5,7 +5,7 @@ using UnityEngine;
 //Applydamage a faire
 public class EnemyController : MonoBehaviour
 {
-   
+    Coroutine followCoroutine;
     enum EnemyState
     {
         Idle,
@@ -67,20 +67,20 @@ public class EnemyController : MonoBehaviour
                 if (distance < 3f)
                 {
                     //Attack
-                    walkDir = new Vector3(-walkDir.x, 0);
+                   
                     reachPos = new Vector3(transform.position.x + (transform.position.x - player.transform.position.x / 2f), transform.position.y + 3f);
                     basePos = transform.position;
                     state = EnemyState.Jump;
                 }
                 else
-                    transform.Translate(walkDir * speed);
+                    transform.Translate(walkDir*speed);
                 break;
             case EnemyState.Walk:
                  distance = Vector3.Distance(transform.position, player.transform.position);
                 if (distance< 3f)
                 {
                     //Attack
-                    walkDir = new Vector3(-walkDir.x, 0);
+                    
                     reachPos = new Vector3(transform.position.x+(transform.position.x -player.transform.position.x / 2f),transform.position.y+3f);
                     basePos = transform.position;
                     state = EnemyState.Jump;
@@ -155,18 +155,25 @@ Quaternion LookAt2D(Vector2 forward)
 
                 if (!Sniff())
                 {
+                Debug.Log("STOP");
+                if (followCoroutine != null)
+                    StopCoroutine(followCoroutine);
                     TurnToPlayer(false, new Vector3());
                     state = EnemyState.Walk;
                 }
                 else
                 {
-                FollowPath();
+                Debug.Log("STOP");
+                if(followCoroutine==null)
+               followCoroutine= StartCoroutine(FollowPath());
                 state = EnemyState.SmartWalk;
-            }
+                 }
             }
             else
             {
-                FollowPath();
+            Debug.Log("STOP");
+            if (followCoroutine == null)
+                followCoroutine = StartCoroutine(FollowPath());
                 state = EnemyState.SmartWalk;
             }
 
@@ -177,65 +184,75 @@ Quaternion LookAt2D(Vector2 forward)
     }
 
 
-    private void FollowPath()
+    private IEnumerator FollowPath()
     {
-        Vector3 frontier = new Vector3();
-        frontier = transform.position;
-        Vector3 current = frontier;
-        Vector3[] visited = { frontier };
-        while (frontier != null)
+        Debug.Log("coroutineStarted");
+        Vector3 position = new Vector3();
+        position = transform.position;
+        Vector3 current = position;
+        List<Vector3> visited = new List<Vector3>() ;
+        visited.Add(position);
+        while (true)
         {
-            current = frontier;
-            foreach (Vector3 next in neighbors(current))
+            current = position;
+            foreach (Vector3 nextPos in neighbors(current))
             {
-                foreach (Vector3 pos in visited)
+                Debug.Log("x1" + nextPos.x);
+                Debug.Log("y1" + nextPos.y);
+                foreach (Vector3 visitedPos in visited)
                 {
-                    if (pos != next)
+                    Debug.Log("visité"+visited.Count);
+
+                    if (visitedPos != nextPos&&nextPos!=null&& nextPos !=Vector3.zero)
                     {
-                        TurnToPlayer(true, pos);
-                        frontier = next;
-                        visited[visited.Length - 1] = next;
+                        Debug.Log("x2"+nextPos.x);
+                        Debug.Log("y2" + nextPos.y);
+                        TurnToPlayer(true, nextPos);
+                        position = nextPos;
+                        visited.Add(nextPos);
                         break;
                     }
-                    if (current != frontier)
-                        break;
+                    
 
                 }
-                
+               
             }
 
-            
+            yield return new WaitForEndOfFrame();
         }
 
     }
-    private Vector3[] neighbors(Vector3 current)
+    private List<Vector3> neighbors(Vector3 current)
     {
-        Vector3[] arrayPos = new Vector3[] { };
+        List<Vector3> arrayPos = new List<Vector3>();
         
         Vector3 leftPos = new Vector3(current.x - deltaPosPath, current.y);
-        RaycastHit2D rayleft = Physics2D.Raycast(transform.position, leftPos);
-        if(rayleft.collider==null|| (rayleft.collider != null && rayleft.collider.tag=="Player"))
+        RaycastHit2D rayleft = Physics2D.Raycast(transform.position+Vector3.left * 4f, leftPos, 1f);
+        if(rayleft.collider==null|| (rayleft.collider != null && (rayleft.collider.tag == "Player" || rayleft.collider.tag == "Enemy")))
         {
-            arrayPos[arrayPos.Length - 1] = leftPos;
+         
+            arrayPos.Add(leftPos);
+           
         }
         Vector3 rightPos = new Vector3(current.x + deltaPosPath, current.y);
-        RaycastHit2D rayRight = Physics2D.Raycast(transform.position, rightPos);
-        if (rayRight.collider == null || (rayRight.collider != null && rayRight.collider.tag == "Player"))
+        RaycastHit2D rayRight = Physics2D.Raycast(transform.position+Vector3.right*4f, rightPos, 1f);
+        if (rayRight.collider == null || (rayRight.collider != null && (rayRight.collider.tag == "Player" || rayRight.collider.tag == "Enemy")))
         {
-            arrayPos[arrayPos.Length - 1] = rightPos;
+            arrayPos.Add(rightPos);
         }
         Vector3 upPos = new Vector3(current.x, current.y + deltaPosPath);
-        RaycastHit2D rayUp = Physics2D.Raycast(transform.position, upPos);
-        if (rayUp.collider == null || (rayUp.collider != null && rayUp.collider.tag == "Player"))
+        RaycastHit2D rayUp = Physics2D.Raycast(transform.position+Vector3.up * 4f, upPos, 1f);
+        if (rayUp.collider == null || (rayUp.collider != null && (rayUp.collider.tag == "Player" || rayUp.collider.tag == "Enemy")))
         {
-            arrayPos[arrayPos.Length - 1] = upPos;
+            arrayPos.Add(upPos);
         }
         Vector3 downPos = new Vector3(current.x, current.y - deltaPosPath);
-        RaycastHit2D rayDown = Physics2D.Raycast(transform.position, downPos);
-        if (rayDown.collider == null || (rayDown.collider != null && rayDown.collider.tag == "Player"))
+        RaycastHit2D rayDown = Physics2D.Raycast(transform.position+Vector3.down * 4f, downPos,1f);
+        if (rayDown.collider == null || (rayDown.collider != null && (rayDown.collider.tag == "Player"|| rayDown.collider.tag == "Enemy")))
         {
-            arrayPos[arrayPos.Length - 1] = downPos;
+            arrayPos.Add(downPos);
         }
+        Debug.Log("arraypos "+arrayPos.Count);
         return arrayPos;
     }
 
