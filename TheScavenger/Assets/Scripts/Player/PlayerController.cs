@@ -231,7 +231,6 @@ public class PlayerController : MonoBehaviour
 
     void EndAttack()
     {
-        Debug.Log("bheu");
         attackUpCollider.gameObject.SetActive(false);
         attackDownCollider.gameObject.SetActive(false);
         attackRightCollider.gameObject.SetActive(false);
