@@ -26,7 +26,7 @@ public class PlayerUI : MonoBehaviour
     PlayerRage playerRage;
 
     int previousLife = 0;
-    int previousShield = 0;
+    public int previousShield = 0;
     float previousEnergy = 0;
 
     // Start is called before the first frame update

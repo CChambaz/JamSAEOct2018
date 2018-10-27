@@ -65,6 +65,8 @@ public class ObjectCollectable : MonoBehaviour
                     pr.AddEnergy(gainEnergy);
                     break;
                 case ObjectClass.GainType.ARMOR:
+                    PlayerUI pui = collision.gameObject.GetComponent<PlayerUI>();
+                    pui.previousShield=0;
                     break;
                 default:
                     break;
