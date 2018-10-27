@@ -51,7 +51,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 0}
-  m_PlaneDistance: 1
+  m_PlaneDistance: 10
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -109,15 +109,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2843836100333859561}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c09a52ac7a857584ab8b7e93babbb61c, type: 3}
+  m_Script: {fileID: 11500000, guid: 9df2042abcfa4e047866c45738034842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 2843836100576211273}
   increaseLife: {fileID: 2843836100540837951}
   increaseArmor: {fileID: 2843836100467766707}
-  addArmorCost: 0
-  addLifeCost: 0
-  fadeSpeed: 0.1
+  addArmorCost: 15
+  addLifeCost: 15
+  fadeSpeed: 0.2
   fadeApproximation: 0.5
 --- !u!1 &2843836100414139906
 GameObject:
@@ -235,7 +235,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 333, y: 0}
+  m_AnchoredPosition: {x: 200, y: 0}
   m_SizeDelta: {x: 160, y: 179.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2843836100467766732
@@ -444,7 +444,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 127, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 179.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2843836100540837944
@@ -507,7 +507,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:

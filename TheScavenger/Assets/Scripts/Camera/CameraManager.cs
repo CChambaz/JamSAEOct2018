@@ -106,6 +106,11 @@ public class CameraManager : MonoBehaviour
         }
     }
 
+    public void AddPlayer(Transform player)
+    {
+        target = player;
+    }
+
     private void OnDrawGizmos()
     {
         if (newPositionCamera != Vector2.zero)

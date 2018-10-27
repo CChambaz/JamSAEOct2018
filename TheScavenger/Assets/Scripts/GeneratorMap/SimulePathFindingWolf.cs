@@ -9,7 +9,7 @@ public class SimulePathFindingWolf : MonoBehaviour
 
     private Transform target;
     private Vector2 move_monster;
-    private float speed = 0.7f;
+    private float speed = 3.4f;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +25,7 @@ public class SimulePathFindingWolf : MonoBehaviour
             if ((target.position - transform.position).magnitude > 1.5f)
             {
                 move();
-                this.gameObject.transform.position += (Vector3) move_monster * Time.deltaTime;
+                this.gameObject.transform.position += (Vector3) move_monster * Time.deltaTime * speed;
             }
         }
         else
@@ -61,8 +61,7 @@ public class SimulePathFindingWolf : MonoBehaviour
                 Path.RemoveAt(0);
             }
 
-            move_monster = (new Vector3((int) Path[0].Position.x, (int) Path[0].Position.y) - transform.position)
-                .normalized;
+            move_monster = (new Vector3((int) Path[0].Position.x, (int) Path[0].Position.y) - transform.position).normalized;
             //this.gameObject.GetComponent<Rigidbody2D>().velocity = (speed) * dir;
         }
     }

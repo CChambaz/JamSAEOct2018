@@ -111,7 +111,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 207, y: 0.9999999}
+  m_AnchoredPosition: {x: 125, y: 0.9999999}
   m_SizeDelta: {x: 160, y: 179.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4935442094446526410
@@ -255,7 +255,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 0}
-  m_PlaneDistance: 1
+  m_PlaneDistance: 10
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -313,17 +313,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 4935442094505003454}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd37ca75351b51549ba6f6b09dc70af6, type: 3}
+  m_Script: {fileID: 11500000, guid: d30e71c85e5b35b42beb0a61b26a5669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interCanvas: {fileID: 4935442095129005842}
-  increaseLife: {fileID: 0}
-  increaseArmor: {fileID: 0}
-  increaseDamage: {fileID: 0}
-  addArmorCost: 0
-  addLifeCost: 0
-  addDamageCost: 0
-  fadeSpeed: 0.1
+  increaseLife: {fileID: 4935442094897601294}
+  increaseArmor: {fileID: 4935442094650915220}
+  increaseDamage: {fileID: 4935442094446526405}
+  addArmorCost: 10
+  addLifeCost: 10
+  addDamageCost: 10
+  fadeSpeed: 0.2
   fadeApproximation: 0.5
 --- !u!1 &4935442094650915217
 GameObject:
@@ -362,7 +362,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.99999994}
+  m_AnchoredPosition: {x: -75, y: 1}
   m_SizeDelta: {x: 160, y: 179.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4935442094650915221
@@ -645,7 +645,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: 1}
+  m_AnchoredPosition: {x: -275, y: 1}
   m_SizeDelta: {x: 160, y: 179.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4935442094897601295
@@ -1098,7 +1098,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 353.3, y: 6.1}
+  m_AnchoredPosition: {x: 300, y: 6.1}
   m_SizeDelta: {x: 81.5, y: 146.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4935442095869083057
