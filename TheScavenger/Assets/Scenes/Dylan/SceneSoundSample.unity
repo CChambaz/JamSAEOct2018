@@ -542,6 +542,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1816718058}
+    - target: {fileID: 6572836853391428221, guid: c011bd29f6e50854db60243e22225fcc,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c011bd29f6e50854db60243e22225fcc, type: 3}
 --- !u!1 &1816718056
@@ -769,25 +774,5 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1816718058}
-    - target: {fileID: 6468112683696947871, guid: ea2d330a3de5e194f9113cc72ede5136,
-        type: 3}
-      propertyPath: attackCoolDown
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 6468112683696947871, guid: ea2d330a3de5e194f9113cc72ede5136,
-        type: 3}
-      propertyPath: dashSpeed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6468112683696947871, guid: ea2d330a3de5e194f9113cc72ede5136,
-        type: 3}
-      propertyPath: dashDuration
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6468112683696947871, guid: ea2d330a3de5e194f9113cc72ede5136,
-        type: 3}
-      propertyPath: dashCoolDown
-      value: 2.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea2d330a3de5e194f9113cc72ede5136, type: 3}

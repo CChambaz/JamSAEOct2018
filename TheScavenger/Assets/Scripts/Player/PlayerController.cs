@@ -62,6 +62,8 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         renderer = GetComponent<SpriteRenderer>();
         actualOrientation = Orientation.HORIZONTAL;
+
+        Camera.main.GetComponent<CameraManager>().AddPlayer(this.transform);
     }
 
     // Update is called once per frame
