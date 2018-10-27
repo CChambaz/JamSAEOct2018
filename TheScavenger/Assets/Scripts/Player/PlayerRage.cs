@@ -36,13 +36,7 @@ public class PlayerRage : MonoBehaviour
 
     void EnableRage()
     {
-        // Disable rage if active
-        if (activeRageMultiplier > 1)
-        {
-            activeRageMultiplier = 1;
-            return;
-        }
-        else if (actualEnergy > 0)
+        if (actualEnergy > 0)
         {
             activeRageMultiplier = rageMultiplier;
         }
@@ -51,7 +45,11 @@ public class PlayerRage : MonoBehaviour
     void CheckRageStatus()
     {
         if (actualEnergy <= 0)
+        {
             activeRageMultiplier = 1;
+            actualEnergy = 0;
+            return;
+        }
 
         if (actualEnergy > 0)
             actualEnergy -= energyUseRate;        

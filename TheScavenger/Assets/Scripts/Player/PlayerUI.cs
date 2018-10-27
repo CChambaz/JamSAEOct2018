@@ -82,7 +82,7 @@ public class PlayerUI : MonoBehaviour
         float actualEnergy = (float)playerRage.actualEnergy;
         float totalEnergy = (float)playerRage.maxEnergy;
 
-        StartCoroutine(Fill(imgHealth, actualEnergy / totalEnergy));
+        StartCoroutine(Fill(imgEnergy, actualEnergy / totalEnergy));
 
         previousEnergy = (int)actualEnergy;
     }
