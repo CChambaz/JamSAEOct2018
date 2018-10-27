@@ -65,6 +65,9 @@ public class PlayerLife : MonoBehaviour
             return;
         }
 
+        if (maxArmor == maxTotalArmor && canIncreaseMaxArmor)
+            return;
+
         activeArmor += armorAdded;
     }
 }
