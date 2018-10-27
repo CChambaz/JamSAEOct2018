@@ -19,6 +19,7 @@ public class PlayerLife : MonoBehaviour
     {
         maxLife = baseLife;
         activeLife = maxLife;
+        activeArmor = maxArmor;
     }
 
     public void ChangeLife(int lifeAdded)

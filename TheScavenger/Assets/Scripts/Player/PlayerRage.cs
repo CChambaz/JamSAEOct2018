@@ -6,11 +6,12 @@ public class PlayerRage : MonoBehaviour
 {
     [Header("Rage attribut")]
     [SerializeField] int energyUseRate;
-    [SerializeField] int rageMultiplier; 
+    [SerializeField] int rageMultiplier;
+    [SerializeField] public int maxEnergy;
 
     public int activeRageMultiplier = 1;
 
-    int actualEnergy;
+    public int actualEnergy;
 
     // Start is called before the first frame update
     void Start()
