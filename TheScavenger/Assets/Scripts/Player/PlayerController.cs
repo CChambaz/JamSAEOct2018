@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
     float dashStartAt = 0;
     float lastDashAt = 0;
 
+    float lastAttackAt = 0;
+
     PlayerRage rage;
     MainMenu mainMenu;
     InterLevelMenu interMenu;
@@ -79,7 +81,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking && Time.time > lastAttackAt + attackCoolDown)
             StartAttack();
 
         Move();
@@ -216,17 +218,13 @@ public class PlayerController : MonoBehaviour
 
     void StartAttack()
     {
-        if (!isAttacking)
-            isAttacking = true;
-        else
-            return;
-
-        if (animator.GetBool("isAttaking"))
-            return;
+        isAttacking = true;
 
         animator.SetBool("isAttacking", true);
 
-        switch(actualOrientation)
+        Debug.Log("Attack : " + isAttacking + " | " + animator.GetBool("isAttacking"));
+
+        switch (actualOrientation)
         {
             case Orientation.UP:
                 attackUpCollider.gameObject.SetActive(true);
@@ -253,6 +251,8 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("isAttacking", false);
 
         isAttacking = false;
+
+        lastAttackAt = Time.time;
     }
 
     public void IncreaseDamage(int amount)
