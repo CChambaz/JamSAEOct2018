@@ -118,10 +118,10 @@ public class BoardCreator : MonoBehaviour
                 corridors[i].SetupCorridor(rooms[i], corridorLength, roomWidth, roomHeight, columns, rows, false);
             }
         }
-        if (GameObject.Find("player(Clone)")== null)
+        if (GameObject.Find("Player(Clone)")== null)
         {
             Vector3 playerPos = new Vector3(corridors[corridors.Length-1].EndPositionX, corridors[corridors.Length-1].EndPositionY, 0);
-            //Instantiate(player, playerPos, Quaternion.identity);
+            Instantiate(player, playerPos, Quaternion.identity);
             int itroom_rdm = Random.Range(0, rooms.Length - 1);
             int width_rdm = Random.Range(0, rooms[itroom_rdm].roomWidth);
             int height_rdm = Random.Range(0, rooms[itroom_rdm].roomHeight);

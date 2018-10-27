@@ -17,8 +17,8 @@ public class BFS
 
     public List<Node> CalculateBFS(Grid _grid, Vector3 position, Vector3 start_position)
     {
-        int sizeX = 40;//Nombre magique
-        int sizeY = 40;//MAGIC!!!!!!!! TADADA!
+        int sizeX = 20;//Nombre magique
+        int sizeY = 20;//MAGIC!!!!!!!! TADADA!
         grid = _grid.GetGride();
 
         for (int i = 0; i < sizeX; i++)
