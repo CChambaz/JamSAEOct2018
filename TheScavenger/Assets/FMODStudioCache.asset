@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
+<<<<<<< HEAD
   - {fileID: 114092276438456710}
   - {fileID: 114546896598414042}
   EditorEvents:
@@ -29,6 +30,24 @@ MonoBehaviour:
   MasterBankRef: {fileID: 114546896598414042}
   StringsBankRef: {fileID: 114092276438456710}
   stringsBankWriteTime: 636762090567794148
+=======
+  - {fileID: 114825979382684828}
+  - {fileID: 114682621336138912}
+  EditorEvents:
+  - {fileID: 114018871742613854}
+  - {fileID: 114105971809666128}
+  - {fileID: 114369836865223792}
+  - {fileID: 114141313889004928}
+  - {fileID: 114628608564471002}
+  - {fileID: 114641966497612912}
+  - {fileID: 114365266946097558}
+  - {fileID: 114244193887586894}
+  - {fileID: 114185542904855426}
+  - {fileID: 114994353780954252}
+  MasterBankRef: {fileID: 114682621336138912}
+  StringsBankRef: {fileID: 114825979382684828}
+  stringsBankWriteTime: 636762320709473313
+>>>>>>> Sound
   cacheVersion: 2
 --- !u!114 &114000292270640238
 MonoBehaviour:
@@ -53,6 +72,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 590
+--- !u!114 &114018871742613854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/SoundEffects/Recup Scrap
+  guid: 0ba3aa9fd6fa064b807001c9770fabbd
+  Banks:
+  - {fileID: 114682621336138912}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1125
 --- !u!114 &114039520155141686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,7 +137,11 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1125
+<<<<<<< HEAD
 --- !u!114 &114055671507346208
+=======
+--- !u!114 &114105971809666128
+>>>>>>> Sound
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,7 +156,11 @@ MonoBehaviour:
   Path: event:/Musics/WhenTwoWorldsCollide
   guid: 127c73fc2fd94d48af8a38afc335aa5a
   Banks:
+<<<<<<< HEAD
   - {fileID: 114546896598414042}
+=======
+  - {fileID: 114682621336138912}
+>>>>>>> Sound
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -118,6 +168,7 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 118383
+<<<<<<< HEAD
 --- !u!114 &114071560979647296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,6 +211,8 @@ MonoBehaviour:
   - Name: Desktop
     Value: 1206
   Exists: 1
+=======
+>>>>>>> Sound
 --- !u!114 &114135201445171212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,7 +236,11 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2437
+<<<<<<< HEAD
 --- !u!114 &114160662150959846
+=======
+--- !u!114 &114141313889004928
+>>>>>>> Sound
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,17 +252,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   Path: event:/SoundEffects/Axe/Axe
   guid: 820470eabd29144790ecb5e831ed70f4
   Banks:
   - {fileID: 114546896598414042}
+=======
+  Path: event:/SoundEffects/Shield/Make Shield
+  guid: 549ff78806f75447b61486674869775d
+  Banks:
+  - {fileID: 114682621336138912}
+>>>>>>> Sound
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
+<<<<<<< HEAD
   Length: 492
+=======
+  Length: 840
+>>>>>>> Sound
 --- !u!114 &114182739302748332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,6 +297,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 824
+--- !u!114 &114185542904855426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/SoundEffects/Axe/Axe
+  guid: 820470eabd29144790ecb5e831ed70f4
+  Banks:
+  - {fileID: 114682621336138912}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 492
 --- !u!114 &114211324599162374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,6 +343,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 118383
+--- !u!114 &114244193887586894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/SoundEffects/Characters/Wolf/Wolf - Follow
+  guid: 7d85a51733551c4b9cae9d19341060b2
+  Banks:
+  - {fileID: 114682621336138912}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2437
 --- !u!114 &114272395098180420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,6 +481,52 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 250
+--- !u!114 &114365266946097558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/SoundEffects/Characters/Wolf/Wolf - Attack
+  guid: 7d140c73f0aec7499eeb0345e7e8a5f2
+  Banks:
+  - {fileID: 114682621336138912}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1062
+--- !u!114 &114369836865223792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/SoundEffects/Characters/Wolf/Wolf - Walk
+  guid: 1294c5342114bb4fb27b518759ab6210
+  Banks:
+  - {fileID: 114682621336138912}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1187
 --- !u!114 &114388030115515094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,7 +550,11 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 840
+<<<<<<< HEAD
 --- !u!114 &114531451992050558
+=======
+--- !u!114 &114628608564471002
+>>>>>>> Sound
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -402,6 +566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   Path: event:/SoundEffects/Characters/Wolf/Wolf - Follow
   guid: 7d85a51733551c4b9cae9d19341060b2
   Banks:
@@ -434,6 +599,20 @@ MonoBehaviour:
     Value: 5479840
   Exists: 1
 --- !u!114 &114579382632383802
+=======
+  Path: event:/Musics/WhenTheWildWindBlows
+  guid: 600eca3b1d95104fb3847a20fe981ae2
+  Banks:
+  - {fileID: 114682621336138912}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 306218
+--- !u!114 &114641966497612912
+>>>>>>> Sound
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -445,18 +624,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   Path: event:/SoundEffects/Recup Scrap
   guid: 0ba3aa9fd6fa064b807001c9770fabbd
   Banks:
   - {fileID: 114546896598414042}
+=======
+  Path: event:/SoundEffects/Shield/Shield Destroy
+  guid: 70bd259bbbad9842b117d8b2acbb9eee
+  Banks:
+  - {fileID: 114682621336138912}
+>>>>>>> Sound
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
+<<<<<<< HEAD
   Length: 1125
 --- !u!114 &114688992302036818
+=======
+  Length: 824
+--- !u!114 &114682621336138912
+>>>>>>> Sound
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -465,6 +656,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -502,6 +694,19 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 840
+=======
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Admin\Documents\GameJam\Sae\JamSAEOct2018\TheScavenger\Assets\Sounds\Fmod\fmod\Build\Desktop\Master
+    Bank.bank
+  lastModified: 636762320709413492
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 5479840
+  Exists: 1
+>>>>>>> Sound
 --- !u!114 &114823004773196520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -525,6 +730,25 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1062
+--- !u!114 &114825979382684828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: Assets\Sounds\Fmod\fmod\Build\Desktop\Master Bank.strings.bank
+  lastModified: 636762320709473313
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 1206
+  Exists: 1
 --- !u!114 &114892799136532192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -545,7 +769,11 @@ MonoBehaviour:
   - Name: Desktop
     Value: 5479840
   Exists: 1
+<<<<<<< HEAD
 --- !u!114 &114905564242516082
+=======
+--- !u!114 &114994353780954252
+>>>>>>> Sound
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -557,14 +785,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   Path: event:/SoundEffects/Shield/Shield Destroy
   guid: 70bd259bbbad9842b117d8b2acbb9eee
   Banks:
   - {fileID: 114546896598414042}
+=======
+  Path: event:/SoundEffects/Hammer/Hammer
+  guid: d8d6bd95394ec54daa6586288e5e37f5
+  Banks:
+  - {fileID: 114682621336138912}
+>>>>>>> Sound
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
+<<<<<<< HEAD
   Length: 824
+=======
+  Length: 250
+>>>>>>> Sound

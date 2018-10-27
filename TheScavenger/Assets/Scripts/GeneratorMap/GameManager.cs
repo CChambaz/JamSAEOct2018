@@ -24,12 +24,12 @@ public class GameManagerSample : MonoBehaviour {
 
     [SerializeField] Text Level;
 
-    public int getColumns()
+    public int GetColumns()
     {
         return columns;
     }
 
-    public int getRows()
+    public int GetRows()
     {
         return rows;
     }
@@ -37,8 +37,8 @@ public class GameManagerSample : MonoBehaviour {
     private void Start()
     {
         board_creator.Init(columns, rows);
-       // grid.Init(board_creator, columns, rows);
-      //  spawn_manager.SpawnEnemies(board_creator);
+        grid.Init(board_creator, columns, rows);
+        spawn_manager.SpawnEnemies(grid);
 
         //UI
       //  Level.text = Level.text + GameObject.Find("Scoring").GetComponent<ScoringManger>().GetLevel().ToString();
