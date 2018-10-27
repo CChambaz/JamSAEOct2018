@@ -79,14 +79,14 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking)
+            StartAttack();
+
         Move();
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing)
             StartDash();
-
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking)
-            StartAttack();
-
+              
         if(!isMoving)
         {
             animator.SetBool("isWalkingHorizontal", false);
@@ -216,7 +216,13 @@ public class PlayerController : MonoBehaviour
 
     void StartAttack()
     {
-        isAttacking = true;
+        if (!isAttacking)
+            isAttacking = true;
+        else
+            return;
+
+        if (animator.GetBool("isAttaking"))
+            return;
 
         animator.SetBool("isAttacking", true);
 
