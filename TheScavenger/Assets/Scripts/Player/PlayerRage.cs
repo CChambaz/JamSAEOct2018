@@ -5,13 +5,13 @@ using UnityEngine;
 public class PlayerRage : MonoBehaviour
 {
     [Header("Rage attribut")]
-    [SerializeField] int energyUseRate;
+    [SerializeField] float energyUseRate;
     [SerializeField] int rageMultiplier;
-    [SerializeField] public int maxEnergy;
+    [SerializeField] public float maxEnergy;
 
     public int activeRageMultiplier = 1;
 
-    public int actualEnergy;
+    public float actualEnergy;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +29,7 @@ public class PlayerRage : MonoBehaviour
             CheckRageStatus();
     }
 
-    public void AddEnergy(int energyAdded)
+    public void AddEnergy(float energyAdded)
     {
         actualEnergy += energyAdded;
     }

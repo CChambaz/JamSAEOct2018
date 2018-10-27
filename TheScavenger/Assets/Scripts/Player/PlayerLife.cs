@@ -7,7 +7,7 @@ public class PlayerLife : MonoBehaviour
     [Header("Attribut")]
     [SerializeField] int baseLife;
     [SerializeField] int baseArmor;
-    [SerializeField] int maxTotalArmor;
+    [SerializeField] public int maxTotalArmor;
 
     public int maxLife;
     public int activeLife;
@@ -20,6 +20,8 @@ public class PlayerLife : MonoBehaviour
     {
         maxLife = baseLife;
         activeLife = maxLife;
+
+        maxArmor = baseArmor;
         activeArmor = maxArmor;
     }
 

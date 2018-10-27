@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class PlayerUI : MonoBehaviour
 {
     [Header("UI Components")]
-    [SerializeField] Canvas globalCanvas;
+    [SerializeField] CanvasGroup uiCanvasStatic;
+    [SerializeField] CanvasGroup uiCanvasDynamic;
     [SerializeField] Image imgHealth;
     [SerializeField] Image imgEnergy;
     [SerializeField] List<Image> shieldList;
@@ -22,15 +23,13 @@ public class PlayerUI : MonoBehaviour
 
     int previousLife = 0;
     int previousShield = 0;
-    int previousEnergy = 0;
+    float previousEnergy = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-
-        playerStats = player.GetComponent<PlayerLife>();
-        playerRage = player.GetComponent<PlayerRage>();
+        playerStats = GetComponent<PlayerLife>();
+        playerRage = GetComponent<PlayerRage>();
     }
 
     // Update is called once per frame
@@ -58,20 +57,12 @@ public class PlayerUI : MonoBehaviour
 
     void UpdateShield()
     {
-        if (previousShield < playerStats.activeArmor)
+        for (int i = 0; i < playerStats.maxTotalArmor; i++)
         {
-            for (int i = 0; i < playerStats.activeArmor; i++)
-            {
+            if (i >= playerStats.activeArmor)
+                StartCoroutine(Fill(shieldList[i], 0));
+            else
                 StartCoroutine(Fill(shieldList[i], 1));
-            }
-        }
-        else
-        {
-            for (int i = 0; i < playerStats.maxArmor; i++)
-            {
-                if (i > playerStats.activeArmor)
-                    StartCoroutine(Fill(shieldList[i], 0));
-            }
         }
 
         previousShield = playerStats.activeArmor;
@@ -79,12 +70,12 @@ public class PlayerUI : MonoBehaviour
 
     void UpdateEnergy()
     {
-        float actualEnergy = (float)playerRage.actualEnergy;
-        float totalEnergy = (float)playerRage.maxEnergy;
+        float actualEnergy = playerRage.actualEnergy;
+        float totalEnergy = playerRage.maxEnergy;
 
         StartCoroutine(Fill(imgEnergy, actualEnergy / totalEnergy));
 
-        previousEnergy = (int)actualEnergy;
+        previousEnergy = actualEnergy;
     }
 
     IEnumerator Fill(Image imageToFill, float fillGoal)
@@ -92,6 +83,11 @@ public class PlayerUI : MonoBehaviour
         while (imageToFill.fillAmount != fillGoal)
         {
             imageToFill.fillAmount = Mathf.Lerp(imageToFill.fillAmount, fillGoal, fillSpeed);
+
+            if(imageToFill.fillAmount < 0)
+                imageToFill.fillAmount = 0;
+            else if(imageToFill.fillAmount > 1)
+                imageToFill.fillAmount = 1;
 
             yield return new WaitForEndOfFrame();
         }
