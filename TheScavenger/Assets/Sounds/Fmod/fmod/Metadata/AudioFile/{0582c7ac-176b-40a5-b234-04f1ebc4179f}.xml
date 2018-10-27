@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{0582c7ac-176b-40a5-b234-04f1ebc4179f}">
+        <property name="assetPath">
+            <value>Hammer.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>6.7206575963718818</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{20729f5e-d0ce-438d-ab9a-0927bc4759ed}</destination>
+        </relationship>
+    </object>
+</objects>
