@@ -16,6 +16,8 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] float fadeDuration;
     [SerializeField] float fillSpeed;
     [SerializeField] float shieldOffset;
+    [SerializeField] Color shieldColor;
+    [SerializeField] Color healthColor;
 
     GameObject player;
     PlayerLife playerStats;
@@ -43,6 +45,11 @@ public class PlayerUI : MonoBehaviour
 
         if (previousEnergy != playerRage.actualEnergy)
             UpdateEnergy();
+
+        if (playerStats.activeArmor == 0 && imgHealth.color != healthColor)
+            imgHealth.color = healthColor;
+        else if (playerStats.activeArmor > 0 && imgHealth.color != shieldColor)
+            imgHealth.color = shieldColor;
     }
 
     void UpdateLife()
