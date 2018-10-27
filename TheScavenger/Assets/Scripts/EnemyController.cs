@@ -5,15 +5,22 @@ using UnityEngine;
 //Applydamage a faire
 public class EnemyController : MonoBehaviour
 {
-   
+    private const int FIELD_OF_VIEW = 50;
+    private const float DISTANCE_MIN_NODE = 0.25f;
+
+    private Transform target;
+    private Vector2 move_monster;
+    private float speed = 3.4f;
+
     enum EnemyState
     {
         Idle,
-        SmartWalk,
+        Follow,
         Walk,
         Jump,
         Attack
     }
+
     [SerializeField]
     Animator anim;
     EnemyState state;
@@ -27,8 +34,6 @@ public class EnemyController : MonoBehaviour
     Rigidbody2D rigid;
     [SerializeField]
     float jumpForce;
-    [SerializeField]
-    float speed;
     SpriteRenderer renderer;
     [SerializeField]
     float attackDistance;
@@ -49,6 +54,7 @@ public class EnemyController : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         state = EnemyState.Idle;
         renderer = GetComponent<SpriteRenderer>();
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
@@ -59,24 +65,29 @@ public class EnemyController : MonoBehaviour
         switch (state)
         {
             case EnemyState.Idle:
-                float distance = Vector3.Distance(transform.position, player.transform.position);
+                float distance = Vector3.Distance(transform.position, target.position);
                 if (distance > attackDistance+2) SearchPlayer();
                 break;
-            case EnemyState.SmartWalk:
-                distance = Vector3.Distance(transform.position, player.transform.position);
-                if (distance < 3f)
+            case EnemyState.Follow:
+                if (target != null)
                 {
-                    //Attack
-                    walkDir = new Vector3(-walkDir.x, 0);
-                    reachPos = new Vector3(transform.position.x + (transform.position.x - player.transform.position.x / 2f), transform.position.y + 3f);
-                    basePos = transform.position;
-                    state = EnemyState.Jump;
+                    move_monster = new Vector2(0.0f, 0.0f);
+                    if ((target.position - transform.position).magnitude > 1.5f)
+                    {
+                        move();
+                        this.gameObject.transform.position += (Vector3)move_monster * Time.deltaTime * speed;
+                    }
                 }
                 else
-                    transform.Translate(walkDir * speed);
+                {
+                    if (GameObject.FindGameObjectWithTag("Player") != null)
+                    {
+                        target = GameObject.FindGameObjectWithTag("Player").transform;
+                    }
+                }
                 break;
             case EnemyState.Walk:
-                 distance = Vector3.Distance(transform.position, player.transform.position);
+                 distance = Vector3.Distance(transform.position, target.position);
                 if (distance< 3f)
                 {
                     //Attack
@@ -148,7 +159,7 @@ Quaternion LookAt2D(Vector2 forward)
     //S'il sent le joueur, il se tourne simplement dans la bonne direction.
     private void SearchPlayer()
     {
-        float distance = Vector3.Distance(transform.position, player.transform.position);
+        float distance = Vector3.Distance(transform.position, target.position);
         
             if (distance<=distanceRange)
             {
@@ -160,14 +171,12 @@ Quaternion LookAt2D(Vector2 forward)
                 }
                 else
                 {
-                FollowPath();
-                state = EnemyState.SmartWalk;
-            }
+                    state = EnemyState.Follow;
+                }
             }
             else
             {
-                FollowPath();
-                state = EnemyState.SmartWalk;
+                state = EnemyState.Follow;
             }
 
 
@@ -246,8 +255,8 @@ Quaternion LookAt2D(Vector2 forward)
     //Se trourne en direction du joueur
     private void TurnToPlayer(bool smart, Vector3 pos)
     {
-        float playerPosX = player.transform.position.x;
-        float playerPosY = player.transform.position.y;
+        float playerPosX = target.position.x;
+        float playerPosY = target.position.y;
         float distanceX = playerPosX - transform.position.x;
         float distanceY = playerPosY - transform.position.y;
 
@@ -340,6 +349,36 @@ Quaternion LookAt2D(Vector2 forward)
     {
         UnityEngine.Random.InitState(Mathf.RoundToInt(UnityEngine.Random.Range(1f, 999f)));
         return Mathf.RoundToInt(UnityEngine.Random.Range(1f, 4f)) == 1;
+    }
+
+    //BFS SEARCH
+    List<Node> Path;
+    Vector3 dir;
+    BFS bfs;
+
+    private void move()
+    {
+
+        if ((target.transform.position - transform.position).sqrMagnitude < FIELD_OF_VIEW)
+        {
+            if (bfs == null)
+            {
+                bfs = new BFS(GameObject.Find("GameCore").GetComponent<GameManagerSample>().GetColumns(),
+                    GameObject.Find("GameCore").GetComponent<GameManagerSample>().GetRows());
+
+            }
+
+            Path = bfs.CalculateBFS(GameObject.Find("BoardCreator").GetComponent<Grid>(), target.transform.position,
+                transform.position);
+            if ((transform.position - new Vector3((int)Path[0].Position.x, (int)Path[0].Position.y)).sqrMagnitude <=
+                DISTANCE_MIN_NODE)
+            {
+                Path.RemoveAt(0);
+            }
+
+            move_monster = (new Vector3((int)Path[0].Position.x, (int)Path[0].Position.y) - transform.position).normalized;
+            //this.gameObject.GetComponent<Rigidbody2D>().velocity = (speed) * dir;
+        }
     }
 
 }

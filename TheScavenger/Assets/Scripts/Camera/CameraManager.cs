@@ -39,7 +39,6 @@ public class CameraManager : MonoBehaviour
         if (monstersIsAttacking.Count == 0)
         {
             Vector2 position = transform.position;
-            Debug.Log(target.position.y - position.y);
             
             Vector2 positionTarget= Vector2.zero;
             //Limit camera X
