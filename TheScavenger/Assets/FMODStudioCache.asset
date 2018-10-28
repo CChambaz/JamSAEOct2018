@@ -9,255 +9,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20c501e7c2b0b2f4490556bebf3df907, type: 3}
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 114625626809191526}
-  - {fileID: 114909017081720252}
+  - {fileID: 114954854126481728}
+  - {fileID: 114102963111911114}
   EditorEvents:
-  - {fileID: 114729450782799328}
-  - {fileID: 114540980538208598}
-  - {fileID: 114817095502322172}
-  - {fileID: 114478825789402858}
-  - {fileID: 114113189023520260}
-  - {fileID: 114700024264461500}
-  - {fileID: 114451144888514074}
-  - {fileID: 114804407400358724}
-  - {fileID: 114390991576307362}
-  - {fileID: 114924214205648820}
-  - {fileID: 114743400133461294}
-  MasterBankRef: {fileID: 114909017081720252}
-  StringsBankRef: {fileID: 114625626809191526}
-  stringsBankWriteTime: 636762782683995849
+  - {fileID: 114889197032852862}
+  - {fileID: 114866454241937490}
+  - {fileID: 114013379871498670}
+  - {fileID: 114157384046236568}
+  - {fileID: 114895769021176604}
+  - {fileID: 114614338943630338}
+  - {fileID: 114061911236858314}
+  - {fileID: 114557749750995854}
+  - {fileID: 114118557312684618}
+  - {fileID: 114346451562814394}
+  - {fileID: 114041940406059260}
+  MasterBankRef: {fileID: 114102963111911114}
+  StringsBankRef: {fileID: 114954854126481728}
+  stringsBankWriteTime: 636763191854872062
   cacheVersion: 2
---- !u!114 &114113189023520260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: event:/Musics/WhenTheWildWindBlows
-  guid: 600eca3b1d95104fb3847a20fe981ae2
-  Banks:
-  - {fileID: 114909017081720252}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 306218
---- !u!114 &114390991576307362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: event:/SoundEffects/Axe/Axe
-  guid: 820470eabd29144790ecb5e831ed70f4
-  Banks:
-  - {fileID: 114909017081720252}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 492
---- !u!114 &114451144888514074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: event:/SoundEffects/Characters/Wolf/Wolf - Attack
-  guid: 7d140c73f0aec7499eeb0345e7e8a5f2
-  Banks:
-  - {fileID: 114909017081720252}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 1062
---- !u!114 &114478825789402858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: event:/SoundEffects/Shield/Make Shield
-  guid: 549ff78806f75447b61486674869775d
-  Banks:
-  - {fileID: 114909017081720252}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 840
---- !u!114 &114540980538208598
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: event:/Musics/WhenTwoWorldsCollide
-  guid: 127c73fc2fd94d48af8a38afc335aa5a
-  Banks:
-  - {fileID: 114909017081720252}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 118383
---- !u!114 &114625626809191526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: Assets\Sounds\Fmod\fmod\Build\Desktop\Master Bank.strings.bank
-  lastModified: 636762782683995849
-  LoadResult: 0
-  FileSizes:
-  - Name: Desktop
-    Value: 1262
-  Exists: 1
---- !u!114 &114700024264461500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: event:/SoundEffects/Shield/Shield Destroy
-  guid: 70bd259bbbad9842b117d8b2acbb9eee
-  Banks:
-  - {fileID: 114909017081720252}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 824
---- !u!114 &114729450782799328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: event:/SoundEffects/Recup Scrap
-  guid: 0ba3aa9fd6fa064b807001c9770fabbd
-  Banks:
-  - {fileID: 114909017081720252}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 1125
---- !u!114 &114743400133461294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: event:/SoundEffects/Characters/Player/WOOOSH
-  guid: 341a691a47dd7e4188940fff47af9f03
-  Banks:
-  - {fileID: 114909017081720252}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 281
---- !u!114 &114804407400358724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: event:/SoundEffects/Characters/Wolf/Wolf - Follow
-  guid: 7d85a51733551c4b9cae9d19341060b2
-  Banks:
-  - {fileID: 114909017081720252}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 2437
---- !u!114 &114817095502322172
+--- !u!114 &114013379871498670
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -272,7 +46,7 @@ MonoBehaviour:
   Path: event:/SoundEffects/Characters/Wolf/Wolf - Walk
   guid: 1294c5342114bb4fb27b518759ab6210
   Banks:
-  - {fileID: 114909017081720252}
+  - {fileID: 114102963111911114}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -280,27 +54,7 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1187
---- !u!114 &114909017081720252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: C:\Users\Admin\Documents\GameJam\Sae\JamSAEOct2018\TheScavenger\Assets\Sounds\Fmod\fmod\Build\Desktop\Master
-    Bank.bank
-  lastModified: 636762782683935988
-  LoadResult: 0
-  FileSizes:
-  - Name: Desktop
-    Value: 5485408
-  Exists: 1
---- !u!114 &114924214205648820
+--- !u!114 &114041940406059260
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -315,7 +69,7 @@ MonoBehaviour:
   Path: event:/SoundEffects/Hammer/Hammer
   guid: d8d6bd95394ec54daa6586288e5e37f5
   Banks:
-  - {fileID: 114909017081720252}
+  - {fileID: 114102963111911114}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -323,3 +77,249 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 250
+--- !u!114 &114061911236858314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/SoundEffects/Shield/Shield Destroy
+  guid: 70bd259bbbad9842b117d8b2acbb9eee
+  Banks:
+  - {fileID: 114102963111911114}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 824
+--- !u!114 &114102963111911114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Admin\Documents\GameJam\Sae\JamSAEOct2018\TheScavenger\Assets\Sounds\Fmod\fmod\Build\Desktop\Master
+    Bank.bank
+  lastModified: 636763191855709822
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 5485408
+  Exists: 1
+--- !u!114 &114118557312684618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/SoundEffects/Characters/Wolf/Wolf - Follow
+  guid: 7d85a51733551c4b9cae9d19341060b2
+  Banks:
+  - {fileID: 114102963111911114}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2437
+--- !u!114 &114157384046236568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/SoundEffects/Characters/Player/WOOOSH
+  guid: 341a691a47dd7e4188940fff47af9f03
+  Banks:
+  - {fileID: 114102963111911114}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 281
+--- !u!114 &114346451562814394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/SoundEffects/Axe/Axe
+  guid: 820470eabd29144790ecb5e831ed70f4
+  Banks:
+  - {fileID: 114102963111911114}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 492
+--- !u!114 &114557749750995854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/SoundEffects/Characters/Wolf/Wolf - Attack
+  guid: 7d140c73f0aec7499eeb0345e7e8a5f2
+  Banks:
+  - {fileID: 114102963111911114}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1062
+--- !u!114 &114614338943630338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Musics/WhenTheWildWindBlows
+  guid: 600eca3b1d95104fb3847a20fe981ae2
+  Banks:
+  - {fileID: 114102963111911114}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 306218
+--- !u!114 &114866454241937490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Musics/WhenTwoWorldsCollide
+  guid: 127c73fc2fd94d48af8a38afc335aa5a
+  Banks:
+  - {fileID: 114102963111911114}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 118383
+--- !u!114 &114889197032852862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/SoundEffects/Recup Scrap
+  guid: 0ba3aa9fd6fa064b807001c9770fabbd
+  Banks:
+  - {fileID: 114102963111911114}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1125
+--- !u!114 &114895769021176604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/SoundEffects/Shield/Make Shield
+  guid: 549ff78806f75447b61486674869775d
+  Banks:
+  - {fileID: 114102963111911114}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 840
+--- !u!114 &114954854126481728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: Assets\Sounds\Fmod\fmod\Build\Desktop\Master Bank.strings.bank
+  lastModified: 636763191854872062
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 1262
+  Exists: 1

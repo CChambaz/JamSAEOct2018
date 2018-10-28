@@ -4,17 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public enum LAYERMASKS
-{
-    WALL = 8,
-    ENEMY = 9,
-    KEY = 10,
-    PLAYER = 11,
-    DOOR = 12
-}
 
 
-public class GameManagerSample : MonoBehaviour {
+public class GameManager : MonoBehaviour {
     [SerializeField] private int columns = 20;                                 // The number of columns on the board (how wide it will be).
     [SerializeField] private int rows = 20;
 
