@@ -228,7 +228,7 @@ public class EnemyController : MonoBehaviour
     }
 
 
-    private void FollowPath()
+    private IEnumerator FollowPath()
     {
         Vector3 frontier = new Vector3();
         frontier = transform.position;
@@ -236,16 +236,22 @@ public class EnemyController : MonoBehaviour
         Vector3[] visited = {frontier};
         while (frontier != null)
         {
-            current = frontier;
-            foreach (Vector3 next in neighbors(current))
+            current = position;
+            foreach (Vector3 nextPos in neighbors(current))
             {
-                foreach (Vector3 pos in visited)
+                Debug.Log("x1" + nextPos.x);
+                Debug.Log("y1" + nextPos.y);
+                foreach (Vector3 visitedPos in visited)
                 {
-                    if (pos != next)
+                    Debug.Log("visité"+visited.Count);
+
+                    if (visitedPos != nextPos&&nextPos!=null&& nextPos !=Vector3.zero)
                     {
-                        TurnToPlayer(true, pos);
-                        frontier = next;
-                        visited[visited.Length - 1] = next;
+                        Debug.Log("x2"+nextPos.x);
+                        Debug.Log("y2" + nextPos.y);
+                        TurnToPlayer(true, nextPos);
+                        position = nextPos;
+                        visited.Add(nextPos);
                         break;
                     }
 
@@ -269,28 +275,30 @@ public class EnemyController : MonoBehaviour
         RaycastHit2D rayleft = Physics2D.Raycast(transform.position, leftPos);
         if (rayleft.collider == null || (rayleft.collider != null && rayleft.collider.tag == "Player"))
         {
-            arrayPos[arrayPos.Length - 1] = leftPos;
+         
+            arrayPos.Add(leftPos);
+           
         }
 
         Vector3 rightPos = new Vector3(current.x + deltaPosPath, current.y);
-        RaycastHit2D rayRight = Physics2D.Raycast(transform.position, rightPos);
-        if (rayRight.collider == null || (rayRight.collider != null && rayRight.collider.tag == "Player"))
+        RaycastHit2D rayRight = Physics2D.Raycast(transform.position+Vector3.right*4f, rightPos, 1f);
+        if (rayRight.collider == null || (rayRight.collider != null && (rayRight.collider.tag == "Player" || rayRight.collider.tag == "Enemy")))
         {
-            arrayPos[arrayPos.Length - 1] = rightPos;
+            arrayPos.Add(rightPos);
         }
 
         Vector3 upPos = new Vector3(current.x, current.y + deltaPosPath);
-        RaycastHit2D rayUp = Physics2D.Raycast(transform.position, upPos);
-        if (rayUp.collider == null || (rayUp.collider != null && rayUp.collider.tag == "Player"))
+        RaycastHit2D rayUp = Physics2D.Raycast(transform.position+Vector3.up * 4f, upPos, 1f);
+        if (rayUp.collider == null || (rayUp.collider != null && (rayUp.collider.tag == "Player" || rayUp.collider.tag == "Enemy")))
         {
-            arrayPos[arrayPos.Length - 1] = upPos;
+            arrayPos.Add(upPos);
         }
 
         Vector3 downPos = new Vector3(current.x, current.y - deltaPosPath);
-        RaycastHit2D rayDown = Physics2D.Raycast(transform.position, downPos);
-        if (rayDown.collider == null || (rayDown.collider != null && rayDown.collider.tag == "Player"))
+        RaycastHit2D rayDown = Physics2D.Raycast(transform.position+Vector3.down * 4f, downPos,1f);
+        if (rayDown.collider == null || (rayDown.collider != null && (rayDown.collider.tag == "Player"|| rayDown.collider.tag == "Enemy")))
         {
-            arrayPos[arrayPos.Length - 1] = downPos;
+            arrayPos.Add(downPos);
         }
 
         return arrayPos;
