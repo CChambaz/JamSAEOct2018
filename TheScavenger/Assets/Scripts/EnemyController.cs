@@ -5,6 +5,8 @@ using UnityEngine;
 //Applydamage a faire
 public class EnemyController : MonoBehaviour
 {
+    [SerializeField] GameObject collectablesPrefab;
+
     int healtPoint = 30;
 
     private const int FIELD_OF_VIEW = 500;
@@ -365,12 +367,11 @@ public class EnemyController : MonoBehaviour
                 Destroy(this, 0.3f);
             }
         }
-
-
     }
 
     private void OnDestroy()
     {
+        Instantiate(collectablesPrefab, transform.position, new Quaternion());
         transitionManager.activeEnemyCount--;
     }
 }

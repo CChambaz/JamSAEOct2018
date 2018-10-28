@@ -24,6 +24,7 @@ public class InterLevelMenu : MonoBehaviour
     PlayerLife playerLife;
     TransitionManager transitionManager;
     BoardCreator boardCreator;
+    PlayerMoney playerInventory;
 
     private void Start()
     {
@@ -48,16 +49,19 @@ public class InterLevelMenu : MonoBehaviour
     public void AddArmor(int amount)
     {
         playerLife.IncreaseArmor(amount, true);
+        playerInventory.AddMoney(-addArmorCost);
     }
 
     public void AddLife(int amount)
     {
         playerLife.ChangeLife(amount);
+        playerInventory.AddMoney(-addLifeCost);
     }
 
     public void AddDamage(int amount)
     {
         playerController.IncreaseDamage(amount);
+        playerInventory.AddMoney(-addDamageCost);
     }
 
     IEnumerator Fade(float fadeGoal)

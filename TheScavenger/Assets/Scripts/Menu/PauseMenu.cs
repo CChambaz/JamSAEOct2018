@@ -22,6 +22,7 @@ public class PauseMenu : MonoBehaviour
     MainMenu mainMenu;
     InterLevelMenu interMenu;
     TransitionManager transitionManager;
+    PlayerMoney playerInventory;
 
     private void Start()
     {
@@ -33,7 +34,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !mainMenu.mainMenuCanvas.interactable && !interMenu.interCanvas.interactable)
+        if (Input.GetKeyDown(KeyCode.Escape) && transitionManager.gameState == TransitionManager.GameState.INGAME)
             SetPause();
     }
 
@@ -68,11 +69,13 @@ public class PauseMenu : MonoBehaviour
     public void AddArmor(int amount)
     {
         playerLife.IncreaseArmor(amount, false);
+        playerInventory.AddMoney(-addArmorCost);
     }
 
     public void AddLife(int amount)
     {
         playerLife.ChangeLife(amount);
+        playerInventory.AddMoney(-addArmorCost);
     }
 
     IEnumerator Fade(float fadeGoal)
