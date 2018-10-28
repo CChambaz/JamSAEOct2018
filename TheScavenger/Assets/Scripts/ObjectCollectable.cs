@@ -17,26 +17,35 @@ public class ObjectCollectable : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
+        anim.enabled = false;
+        objet = new ObjectClass();
+        UnityEngine.Random.InitState(Mathf.RoundToInt(Time.deltaTime * UnityEngine.Random.Range(100f, 999f)));
         int randomInt = Mathf.RoundToInt(UnityEngine.Random.Range(0f, 2f));
 
         switch (randomInt)
         {
             case 0: objet.gainType = ObjectClass.GainType.MONEY;
+                anim.enabled = true;
+            
                 gameObject.tag = "MONEY";
                 break;
             case 1:
                 objet.gainType = ObjectClass.GainType.ARMOR;
+                
                 gameObject.tag = "ARMOR";
+                
                 break;
             case 2:
                 objet.gainType = ObjectClass.GainType.ENERGY;
                 gameObject.tag = "ENERGY";
+                
                 break;
            
         }
        
         GetComponent<SpriteRenderer>().sprite = sprites[randomInt];
-        anim = GetComponent<Animator>();
+       
         
     }
 
