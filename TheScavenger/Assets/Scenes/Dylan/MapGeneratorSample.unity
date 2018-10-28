@@ -756,7 +756,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 272914525}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a1455ddb2486d34aa08ffae36465c50, type: 3}
+  m_Script: {fileID: 11500000, guid: e4be2380172101b4d9a38871f24e3844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 655291350222710251, guid: 6e016a0a2798f9347a31dcbee017416b,
@@ -1523,7 +1523,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 372870711}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d57161646ac04d4498fa2f83f2ad46a, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b8a3837b78776e4d988ca135ea48d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   numRooms:
@@ -1531,25 +1531,22 @@ MonoBehaviour:
     m_Max: 25
   roomWidth:
     m_Min: 6
-    m_Max: 10
+    m_Max: 12
   roomHeight:
     m_Min: 6
-    m_Max: 10
+    m_Max: 12
   corridorLength:
-    m_Min: 10
-    m_Max: 14
+    m_Min: 0
+    m_Max: 1
   floorTiles:
   - {fileID: 6093663543043925385, guid: 50c956c29d1d60f4ab059af76250c8eb, type: 3}
-  - {fileID: 6093663543043925385, guid: 275c35bff54d3884382dbca66785e34d, type: 3}
-  - {fileID: 6093663543043925385, guid: 221195048b9d7144a96bcb97a5334d7a, type: 3}
-  - {fileID: 6093663543043925385, guid: 94acad7aa46e45a4b96ddee064075c30, type: 3}
   floor:
   - {fileID: 6093663543043925385, guid: 50c956c29d1d60f4ab059af76250c8eb, type: 3}
   - {fileID: 6093663543043925385, guid: 275c35bff54d3884382dbca66785e34d, type: 3}
   - {fileID: 6093663543043925385, guid: 221195048b9d7144a96bcb97a5334d7a, type: 3}
   - {fileID: 6093663543043925385, guid: 94acad7aa46e45a4b96ddee064075c30, type: 3}
   wallTiles:
-  - {fileID: 6093663543043925385, guid: 48babe2f43d67654f89e7865d8761e9e, type: 3}
+  - {fileID: 6093663543043925385, guid: 9b93a54cbb4f5fa498482ad6e1f7785c, type: 3}
   outerWallTilesV:
   - {fileID: 5065767473881803330, guid: af1504160c29ac945b9a6c45ae84cc5b, type: 3}
   - {fileID: 5065767473881803330, guid: 37803e8c3ef40c346a869d751c3befab, type: 3}
