@@ -15,8 +15,6 @@ public class SpawnManager: MonoBehaviour {
     Vector2[] positionSpawns;
     TransitionManager transitionManager;
 
-    private int counter_enemy = 0;
-
     // Use this for initialization
     void Start () {
         transitionManager = FindObjectOfType<TransitionManager>();
@@ -44,7 +42,8 @@ public class SpawnManager: MonoBehaviour {
     {
         Node[,] grid = _grid.GetGride();
 
-      
+        int counter_enemy = 0;
+
         while (counter_enemy < countWolf)
         {
 
