@@ -23,12 +23,14 @@ public class InterLevelMenu : MonoBehaviour
     PlayerController playerController;
     PlayerLife playerLife;
     TransitionManager transitionManager;
-    
+    BoardCreator boardCreator;
+
     private void Start()
     {
         playerLife = FindObjectOfType<PlayerLife>();
         playerController = FindObjectOfType<PlayerController>();
         transitionManager = FindObjectOfType<TransitionManager>();
+        boardCreator = FindObjectOfType<BoardCreator>();
     }
 
     // Call this function to show or hide the inter-level menu
@@ -74,6 +76,7 @@ public class InterLevelMenu : MonoBehaviour
 
         if (fadeGoal == 0)
         {
+            //boardCreator.                             // Call map generation here
             interCanvas.interactable = false;
             transitionManager.gameState = TransitionManager.GameState.INGAME;
         }

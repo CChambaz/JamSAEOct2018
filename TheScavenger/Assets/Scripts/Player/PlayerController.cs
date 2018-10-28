@@ -210,8 +210,20 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("isWalkingHorizontal", false);
         animator.SetBool("isWalkingUp", false);
         animator.SetBool("isWalkingDown", false);
-        animator.SetBool("isDashing", true);
 
+        switch(actualOrientation)
+        {
+            case Orientation.DOWN:
+                animator.SetBool("isDashingDown", true);
+                break;
+            case Orientation.UP:
+                animator.SetBool("isDashingUp", true);
+                break;
+            case Orientation.HORIZONTAL:
+                animator.SetBool("isDashing", true);
+                break;
+        }
+        
         dashStartAt = Time.time;
     }
 
@@ -234,6 +246,8 @@ public class PlayerController : MonoBehaviour
         isDashing = false;
 
         animator.SetBool("isDashing", false);
+        animator.SetBool("isDashingUp", false);
+        animator.SetBool("isDashingDown", false);
 
         lastDashAt = Time.time;
     }
@@ -243,23 +257,22 @@ public class PlayerController : MonoBehaviour
         sound.Play(SoundPlayerManager.SoundPlayer.Attack);
         isAttacking = true;
 
-        animator.SetBool("isAttacking", true);
-
-        Debug.Log("Attack : " + isAttacking + " | " + animator.GetBool("isAttacking"));
-
         switch (actualOrientation)
         {
             case Orientation.UP:
                 attackUpCollider.gameObject.SetActive(true);
+                animator.SetBool("isAttackingUp", true);
                 break;
             case Orientation.DOWN:
                 attackDownCollider.gameObject.SetActive(true);
+                animator.SetBool("isAttackingDown", true);
                 break;
             case Orientation.HORIZONTAL:
                 if (renderer.flipX)
                     attackLeftCollider.gameObject.SetActive(true);
                 else
                     attackRightCollider.gameObject.SetActive(true);
+                animator.SetBool("isAttacking", true);
                 break;
         }
     }
@@ -272,6 +285,8 @@ public class PlayerController : MonoBehaviour
         attackLeftCollider.gameObject.SetActive(false);
 
         animator.SetBool("isAttacking", false);
+        animator.SetBool("isAttackingUp", false);
+        animator.SetBool("isAttackingDown", false);
 
         isAttacking = false;
 
