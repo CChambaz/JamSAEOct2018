@@ -6,7 +6,10 @@ using System;
 
 public class SpawnManager: MonoBehaviour {
     [SerializeField] private GameObject enemyPrefab;
-    private float countWolf = 3;
+    [SerializeField] int maxWolf;
+    [SerializeField] public int countWolf = 3;
+    [SerializeField] float wolfCountMultiplier;
+
     Room[] rooms;
     
     Vector2[] positionSpawns;
@@ -23,6 +26,18 @@ public class SpawnManager: MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void increaseWolfCount()
+    {
+        float tmpCount = countWolf;
+
+        tmpCount *= wolfCountMultiplier;
+
+        countWolf = (int)tmpCount;
+
+        if(countWolf > maxWolf)
+            countWolf = maxWolf;
+    }
 
     List<Vector2> positionMonsters;
     public void SpawnEnemies(Grid _grid)

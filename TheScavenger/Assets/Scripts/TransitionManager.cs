@@ -15,6 +15,7 @@ public class TransitionManager : MonoBehaviour
     InterLevelMenu interMenu;
     PlayerLife playerLife;
     MainMenu mainMenu;
+    SpawnManager spawnManager;
 
     public int activeEnemyCount = 0;
 
@@ -51,6 +52,7 @@ public class TransitionManager : MonoBehaviour
             case GameState.INGAME:
                 break;
             case GameState.INTERLEVEL:
+                spawnManager.increaseWolfCount();
                 interMenu.FadeInterLevelUI(true);
                 break;
             case GameState.DEATH:
