@@ -11,9 +11,7 @@ using UnityEngine;
 public class ObjectCollectable : MonoBehaviour
 {
    
-    public Sprite[] sprites=new Sprite[3
-        
-        ];
+    public Sprite[] sprites=new Sprite[3];
     ObjectClass objet;
     Animator anim;
     // Start is called before the first frame update
@@ -50,15 +48,41 @@ public class ObjectCollectable : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-       int gainMoney = Mathf.RoundToInt(UnityEngine.Random.Range(5f, 15f));
+        int indexMetal = Mathf.RoundToInt(UnityEngine.Random.Range(1f, 3f));
+
+        int gainMoney = Mathf.RoundToInt(UnityEngine.Random.Range(5f, 15f));
         float gainEnergy = UnityEngine.Random.Range(1f, 3f);
+
         if(collision.tag=="Player")
         {
             switch (objet.gainType)
             {
                 case ObjectClass.GainType.MONEY:
                     PlayerMoney pm = collision.gameObject.GetComponent<PlayerMoney>();
-                    pm.AddMoney(gainMoney);
+                    if (indexMetal == 1)
+                    {
+                        anim.SetBool("scrap1", true);
+                        anim.SetBool("scrap2", false);
+                        anim.SetBool("scrap3", false);
+                    }
+                    else {
+                        if (indexMetal == 2)
+                        {
+                            anim.SetBool("scrap1", false);
+                            anim.SetBool("scrap2", true);
+                            anim.SetBool("scrap3", false);
+                        }
+                        else
+                        {
+                            if (indexMetal == 3)
+                            {
+                                anim.SetBool("scrap1", false);
+                                anim.SetBool("scrap2", false);
+                                anim.SetBool("scrap3", true);
+                            }
+                        }
+                    }
+                        pm.AddMoney(gainMoney);
                     break;
                 case ObjectClass.GainType.ENERGY:
                     PlayerRage pr = collision.gameObject.GetComponent<PlayerRage>();
@@ -68,9 +92,10 @@ public class ObjectCollectable : MonoBehaviour
                     PlayerUI pui = collision.gameObject.GetComponent<PlayerUI>();
                     pui.previousShield=0;
                     break;
-                default:
-                    break;
+                
             }
+
+            Destroy(gameObject, 0.5f);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿
 
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -75,10 +76,10 @@ public class PlayerController : MonoBehaviour
 
         Move();
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift)||Input.GetAxis("Jump") >0)
             StartDash();
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetAxis("Fire1") > 0)
             StartAttack();
 
         if(!isMoving)
@@ -112,22 +113,22 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W)||Input.GetAxis("Vertical") > 0)
             movementUp = 1;
         else
             movementUp = 0;
 
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S) || Input.GetAxis("Vertical") < 0)
             movementDown = 1;
         else
             movementDown = 0;
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) || Input.GetAxis("Horizontal") > 0)
             movementRight = 1;
         else
             movementRight = 0;
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) || Input.GetAxis("Horizontal") < 0)
             movementLeft = 1;
         else
             movementLeft = 0;
