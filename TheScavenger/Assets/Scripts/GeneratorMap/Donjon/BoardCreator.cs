@@ -1,11 +1,12 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 enum floortype
 {
     FLOWER = 20,
     ROCK = 40,
-    NORMAL  = 60,
+    NORMAL = 60,
 }
 
 
@@ -26,7 +27,8 @@ public class BoardCreator : MonoBehaviour
     public GameObject[] floorTiles;
     public GameObject[] floor;// An array of floor tile prefabs.
     public GameObject[] wallTiles;                            // An array of wall tile prefabs.
-    public GameObject[] outerWallTiles;                       // An array of outer wall tile prefabs.
+    public GameObject[] outerWallTilesV;
+    public GameObject[] outerWallTilesH;   // An array of outer wall tile prefabs.
     public GameObject player;
     public GameObject key;
     public GameObject door;
@@ -64,15 +66,18 @@ public class BoardCreator : MonoBehaviour
 
         SetupTilesArray();
 
+
         CreateRoomsAndCorridors();
 
         SetTilesValuesForRooms();
         SetTilesValuesForCorridors();
 
+        //SetupMap();
+
         InstantiateTiles();
         InstantiateOuterWalls();
 
-        SetupMap();
+
     }
 
     void SetupTilesArray()
@@ -118,9 +123,9 @@ public class BoardCreator : MonoBehaviour
                 corridors[i].SetupCorridor(rooms[i], corridorLength, roomWidth, roomHeight, columns, rows, false);
             }
         }
-        if (GameObject.Find("Player(Clone)")== null)
+        if (GameObject.Find("Player(Clone)") == null)
         {
-            Vector3 playerPos = new Vector3(corridors[corridors.Length-1].EndPositionX, corridors[corridors.Length-1].EndPositionY, 0);
+            Vector3 playerPos = new Vector3(corridors[corridors.Length - 1].EndPositionX, corridors[corridors.Length - 1].EndPositionY, 0);
             Instantiate(player, playerPos, Quaternion.identity);
             int itroom_rdm = Random.Range(0, rooms.Length - 1);
             int width_rdm = Random.Range(0, rooms[itroom_rdm].roomWidth);
@@ -150,7 +155,7 @@ public class BoardCreator : MonoBehaviour
                     int yCoord = currentRoom.yPos + k;
 
                     // The coordinates in the jagged array are based on the room's position and it's width and height.
-                    Tiles[xCoord,yCoord] = (int)TileType.FLOOR;
+                    Tiles[xCoord, yCoord] = (int)TileType.FLOOR;
                 }
             }
         }
@@ -191,7 +196,7 @@ public class BoardCreator : MonoBehaviour
 
                 // Set the tile at these coordinates to Floor.
 
-                Tiles[xCoord,yCoord] = (int)TileType.FLOOR;
+                Tiles[xCoord, yCoord] = (int)TileType.FLOOR;
             }
         }
     }
@@ -205,13 +210,14 @@ public class BoardCreator : MonoBehaviour
             for (int j = 0; j < rows; j++)
             {
                 // If the tile type is Wall...
-                if (Tiles[i,j] == (int)TileType.WALL)
+                if (Tiles[i, j] == (int)TileType.WALL)
                 {
                     // ... instantiate a wall over the top.
                     InstantiateFromArray(wallTiles, i, j);
                 }
-                else {
-                    if (Tiles[i, j] == (int)TileType.WALL)
+                else
+                {
+                    if (Tiles[i, j] == (int)TileType.FLOOR)
                     {
                         InstantiateFromArray(floor, i, j);
                     }
@@ -247,8 +253,25 @@ public class BoardCreator : MonoBehaviour
         // While the value for Y is less than the end value...
         while (currentY <= endingY)
         {
-            // ... instantiate an outer wall tile at the x coordinate and the current y coordinate.
-            InstantiateFromArray(outerWallTiles, xCoord, currentY);
+            int i;
+            if (xCoord == 0)
+            {
+                i = 1;
+            }
+            else
+            {
+                i = 0;
+            }
+
+            // The position to be instantiated at is based on the coordinates.
+            Vector3 position = new Vector3(xCoord, currentY, 0f);
+
+            // Create an instance of the prefab from the random index of the array.
+            GameObject tileInstance = Instantiate(outerWallTilesV[i], position, Quaternion.identity) as GameObject;
+
+            //_map[, (int)yCoord] = tileInstance;
+            // Set the tile's parent to the board holder.
+            tileInstance.transform.parent = boardHolder.transform;
 
             currentY++;
         }
@@ -263,8 +286,24 @@ public class BoardCreator : MonoBehaviour
         // While the value for X is less than the end value...
         while (currentX <= endingX)
         {
-            // ... instantiate an outer wall tile at the y coordinate and the current x coordinate.
-            InstantiateFromArray(outerWallTiles, currentX, yCoord);
+            int i;
+            if (yCoord == 0)
+            {
+                i = 0;
+            }
+            else
+            {
+                i = 1;
+            }
+
+            // The position to be instantiated at is based on the coordinates.
+            Vector3 position = new Vector3(currentX, yCoord, 0f);
+
+            GameObject tileInstance = Instantiate(outerWallTilesH[i], position, Quaternion.identity) as GameObject;
+
+            //_map[, (int)yCoord] = tileInstance;
+            // Set the tile's parent to the board holder.
+            tileInstance.transform.parent = boardHolder.transform;
 
             currentX++;
         }
@@ -278,7 +317,7 @@ public class BoardCreator : MonoBehaviour
 
         // The position to be instantiated at is based on the coordinates.
         Vector3 position = new Vector3(xCoord, yCoord, 0f);
-        
+
         // Create an instance of the prefab from the random index of the array.
         GameObject tileInstance = Instantiate(prefabs[randomIndex], position, Quaternion.identity) as GameObject;
         //_map[, (int)yCoord] = tileInstance;
@@ -319,6 +358,9 @@ public class BoardCreator : MonoBehaviour
 
     void SetupMap()
     {
+        List<List<Vector2>> regions = new List<List<Vector2>>();
+        int[,] mapFlags = new int[rows, columns];
+
         for (int i = 0; i < columns; i++)
         {
             for (int j = 0; j < rows; j++)
@@ -326,10 +368,63 @@ public class BoardCreator : MonoBehaviour
                 // If the tile type is Wall...
                 if (Tiles[i, j] == (int)TileType.WALL)
                 {
-
+                    List<Vector2> newRegion = GetRegionTiles(i, j);
+                    regions.Add(newRegion);
                 }
+            }
+        }
 
+        foreach (var region in regions)
+        {
+            if (region.Count < 20)
+            {
+                foreach (var tile in region)
+                {
+                    if (tiles[(int)tile.x, (int)tile.y] == (int)TileType.WALL)
+                        tiles[(int)tile.x, (int)tile.y] = 1;
+                }
             }
         }
     }
+
+    List<Vector2> GetRegionTiles(int startX, int startY)
+    {
+        List<Vector2> tmpTiles = new List<Vector2>();
+        int[,] mapFlags = new int[rows, columns];
+        int tileType = tiles[startX, startY];
+
+        Queue<Vector2> queue = new Queue<Vector2>();
+        queue.Enqueue(new Vector2(startX, startY));
+        mapFlags[startX, startY] = 1;
+
+        while (queue.Count > 0)
+        {
+            Vector2 tile = queue.Dequeue();
+            tmpTiles.Add(tile);
+
+            for (int x = startX - 1; x <= startY + 1; x++)
+            {
+                for (int y = startX - 1; y <= startY + 1; y++)
+                {
+                    if (IsInMapRange(x, y) && (y == tile.y || x == tile.x))
+                    {
+                        if (mapFlags[x, y] == 1 && tiles[x, y] == tileType)
+                        {
+                            mapFlags[x, y] = 0;
+                            queue.Enqueue(new Vector2(x, y));
+                        }
+                    }
+                }
+            }
+        }
+
+        return tmpTiles;
+    }
+
+
+    bool IsInMapRange(int x, int y)
+    {
+        return x >= 0 && x < rows && y >= 0 && y < columns;
+    }
+
 }

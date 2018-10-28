@@ -42,3 +42,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Floors
+    uniqueID: 668633547
+    locked: 0
+  - name: Walls
+    uniqueID: 3833768561
+    locked: 0
+  - name: Monsters
+    uniqueID: 1243980135
+    locked: 0
+  - name: Player
+    uniqueID: 1174216365
+    locked: 0
+  - name: Menus
+    uniqueID: 4071186627
+    locked: 0

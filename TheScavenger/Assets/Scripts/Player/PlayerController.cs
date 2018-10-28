@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -33,6 +34,8 @@ public class PlayerController : MonoBehaviour
     int movementRight;
     int movementLeft;
 
+    private SoundPlayerManager sound;
+
     Orientation actualOrientation;
 
     float dashStartAt = 0;
@@ -62,6 +65,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         renderer = GetComponent<SpriteRenderer>();
         actualOrientation = Orientation.HORIZONTAL;
+        sound = GetComponent<SoundPlayerManager>();
 
         Camera.main.GetComponent<CameraManager>().AddPlayer(this.transform);
     }
@@ -88,7 +92,7 @@ public class PlayerController : MonoBehaviour
 
         Move();
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing && Time.time > dashStartAt + dashCoolDown)
             StartDash();
               
         if(!isMoving)
@@ -143,6 +147,10 @@ public class PlayerController : MonoBehaviour
             movementLeft = 0;
 
         Vector3 moveVector = new Vector3(movementRight - movementLeft, movementUp - movementDown);
+        if (moveVector.sqrMagnitude > 1)
+        {
+            moveVector /= 1.5f;
+        }
 
         moveVector *= moveSpeed * rage.activeRageMultiplier;
 
@@ -190,6 +198,7 @@ public class PlayerController : MonoBehaviour
 
     void StartDash()
     {
+        sound.Play(SoundPlayerManager.SoundPlayer.Dash);
         isDashing = true;
 
         animator.SetBool("isWalkingHorizontal", false);
@@ -202,7 +211,12 @@ public class PlayerController : MonoBehaviour
 
     void Dash()
     {
+       
         Vector3 dashVector = new Vector3(movementRight - movementLeft, movementUp - movementDown);
+        if (dashVector.sqrMagnitude > 1)
+        {
+            dashVector /= 1.5f;
+        }
 
         dashVector *= dashSpeed * rage.activeRageMultiplier;
 
@@ -220,6 +234,7 @@ public class PlayerController : MonoBehaviour
 
     void StartAttack()
     {
+        sound.Play(SoundPlayerManager.SoundPlayer.Attack);
         isAttacking = true;
 
         animator.SetBool("isAttacking", true);
@@ -261,4 +276,10 @@ public class PlayerController : MonoBehaviour
     {
         attackDamage += amount;
     }
+
+    public int GetForceAttack()
+    {
+        return attackDamage;
+    }
+
 }
