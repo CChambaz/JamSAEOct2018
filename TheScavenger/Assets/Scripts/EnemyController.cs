@@ -68,6 +68,8 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!(transitionManager.gameState == TransitionManager.GameState.INGAME) || Time.timeScale == 0)
+            return;
 
         //Enemy states
         switch (state)

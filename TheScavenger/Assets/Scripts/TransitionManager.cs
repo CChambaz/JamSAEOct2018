@@ -56,6 +56,7 @@ public class TransitionManager : MonoBehaviour
                 interMenu.FadeInterLevelUI(true);
                 break;
             case GameState.DEATH:
+                mainMenu.FadeMenuUI(true);
                 break;
         }
     }

@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
     [Header("Menu components")]
     [SerializeField] public CanvasGroup mainMenuCanvas;
+    [SerializeField] Text deathText;
+    [SerializeField] Text startText;
 
     [Header("Fade attributs")]
     [SerializeField] float fadeSpeed;
@@ -26,9 +29,7 @@ public class MainMenu : MonoBehaviour
     public void FadeMenuUI(bool show)
     {
         if (show)
-        {
             StartCoroutine(Fade(1));
-        }
         else
             StartCoroutine(Fade(0));
     }
@@ -53,6 +54,18 @@ public class MainMenu : MonoBehaviour
             transitionManager.gameState = TransitionManager.GameState.INGAME;
         }
         else
+        {
             mainMenuCanvas.interactable = true;
+            if(transitionManager.gameState == TransitionManager.GameState.DEATH)
+            {
+                deathText.text = "You died !";
+                startText.text = "Retry";
+            }
+            else
+            {
+                deathText.text = "";
+                startText.text = "Start";
+            }
+        }
     }
 }
