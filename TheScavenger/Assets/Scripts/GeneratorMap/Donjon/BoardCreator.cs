@@ -33,7 +33,26 @@ public class BoardCreator : MonoBehaviour
     public GameObject key;
     public GameObject door;
 
-    private int[,] tiles;                               // A jagged array of tile types representing the board, like a grid.
+    public Sprite WallTopLeft;
+    public Sprite WallTopMiddle;
+    public Sprite WallTopRight;
+
+    public Sprite WallBotLeft;
+    public Sprite WallBotRight;
+
+    public Sprite WallMiddleLeft;
+    public Sprite WallMiddleRight;
+
+
+    public Sprite barrierHMiddle;
+    public Sprite barrierHLeft;
+    public Sprite barrierHRight;
+
+    public Sprite barrierVMiddle;
+
+    private int[,] tiles;
+    private GameObject[,] map_gameobject;
+    // A jagged array of tile types representing the board, like a grid.
     private Room[] rooms;                                     // All the rooms that are created for this board.
     private Corridor[] corridors;                             // All the corridors that connect the rooms.
     private GameObject boardHolder;                          // GameObject that acts as a container for all other tiles.
@@ -74,7 +93,220 @@ public class BoardCreator : MonoBehaviour
 
         //SetupMap();
 
-        InstantiateTiles();
+        GameObject[,] map_gameobject = new GameObject[rows, columns];
+        int[,] Sides = new int[rows, columns];
+        int[,] direction_out = new int[rows, columns];
+
+        
+            for (int x = 0; x < rows; x++)
+            {
+                for (int y = 0; y < columns; y++)
+                {
+
+                    if (Tiles[x, y] == 0)
+                    {
+                    Vector3 pos = new Vector3(x, y, 0);
+                    map_gameobject[x,y] = InstantiateFromArray(floor, pos.x, pos.y);
+                    for (int j = -1; j <= +1; j++)
+                    {
+                        for (int k = -1; k <= +1; k++)
+                        {
+                            if (j != k)
+                            {
+                                if (IsInMapRange(x + j, y + k))
+                                {
+                                    if (Tiles[x + j, y + k] == 0)
+                                    {
+                                        direction_out[x + j, y + k] += 1;
+
+                                        if (j == -1 && k == 0)
+                                        {
+                                            Sides[x + j, y + k] += 1;
+                                        }
+                                        if (j == 0 && k == 1)
+                                        {
+                                            Sides[x + j, y + k] += 2;
+                                        }
+
+                                        if (j == 0 && k == -1)
+                                        {
+                                            Sides[x + j, y + k] += 3;
+                                        }
+
+                                        if (j == 1 && k == 0)
+                                        {
+                                            Sides[x + j, y + k] += 4;
+                                        }
+                                        //W1 - S2 - N3 - E4
+                                        //Sides[x + j, y + k] += i;
+
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+                    else
+                    {
+                        InstantiateFromArray(floorTiles, x, y);
+                    }
+            }
+        }
+
+        for (int x = 0; x < rows; x++)
+        {
+            for (int y = 0; y < columns; y++)
+            {
+
+                if (Tiles[x, y] == 0)
+                {
+                    Vector3 pos = new Vector3(x, y, 0);
+
+                    map_gameobject[x, y] = Instantiate(wallTiles[0], pos, Quaternion.identity);
+                    //print(Sides[x, y]);
+                    switch (Sides[x, y])
+                    {
+                        //Left
+                        case 0:
+                            //map_gameobject[x, y].GetComponent<SpriteRenderer>().sprite = Walls[0];
+                            //map_gameobject[x, y].transform.localScale = new Vector3(1.6f, 2.1f, 1f);
+                            map_gameobject[x, y].GetComponent<SpriteRenderer>().color = Color.blue;
+                            break;
+                        //top
+                        case 1:
+                            //map_gameobject[x, y].GetComponent<SpriteRenderer>().sprite = Sides_Left_Right[1];
+                            //map_gameobject[x, y].transform.localScale = new Vector3(1.6f, 2.1f, 1f);
+                            map_gameobject[x, y].GetComponent<SpriteRenderer>().sprite = barrierHLeft;
+                            if (direction_out[x, y] == 0)
+                            {
+
+
+                            }
+                            break;
+                        case 2:
+                            //map_gameobject[x, y].GetComponent<SpriteRenderer>().sprite = Sides_Top_Bottom[0];
+                            //map_gameobject[x, y].transform.localScale = new Vector3(1.6f, 2.1f, 1f);
+                            //map_gameobject[x, y].GetComponent<SpriteRenderer>().color = Color.grey;
+                            break;
+                        case 3:
+                           
+                             map_gameobject[x, y].GetComponent<SpriteRenderer>().color = Color.yellow;
+                            if (direction_out[x, y] == 1)
+                            {
+                                //map_gameobject[x, y].GetComponent<SpriteRenderer>().sprite = Sides_Top_Bottom[1];
+                              //  map_gameobject[x, y].GetComponent<SpriteRenderer>().color = Color.red;
+                            }
+                            if (direction_out[x, y] == 2)
+                            {
+                                //map_gameobject[x, y].GetComponent<SpriteRenderer>().sprite = Sides_Top_Bottom[1];
+                                //map_gameobject[x, y].GetComponent<SpriteRenderer>().color = Color.magenta;
+                            }
+                            if (direction_out[x, y] == 3)
+                            {
+                                //map_gameobject[x, y].GetComponent<SpriteRenderer>().sprite = Sides_Top_LeftRight[1];
+                                map_gameobject[x, y].GetComponent<SpriteRenderer>().sprite = WallTopLeft;
+                                //Border_ Bottom_ Left
+                            }
+
+                            break;
+                        case 4:
+                            if (direction_out[x, y] == 1)
+                            {
+                                //map_gameobject[x, y].GetComponent<SpriteRenderer>().sprite = Sides_Left_Right[1];
+                                map_gameobject[x, y].GetComponent<SpriteRenderer>().sprite = barrierHRight;
+                            }
+                            if (direction_out[x, y] == 2)
+                            {
+                             
+                                if (Tiles[x, y + 1] == 0)
+                                {
+                                    //map_gameobject[x, y].GetComponent<SpriteRenderer>().sprite = Wall_Side_TopRight;
+                                    map_gameobject[x, y].GetComponent<SpriteRenderer>().sprite = WallBotLeft;
+                                }
+                                else
+                                {
+
+                                    //map_gameobject[x, y].GetComponent<SpriteRenderer>().sprite = Sides_Left_Right[1];
+                                    map_gameobject[x, y].GetComponent<SpriteRenderer>().color = Color.black;
+                                }
+                            }
+
+                            if (direction_out[x, y] == 3)
+                            {
+                                //map_gameobject[x, y].GetComponent<SpriteRenderer>().sprite = Wall_Side_TopRight;
+                                map_gameobject[x, y].GetComponent<SpriteRenderer>().color = Color.black;
+
+                            }
+                            if (direction_out[x, y] == 4)
+                            {
+                               // map_gameobject[x, y].GetComponent<SpriteRenderer>().color = Color.blue;
+                            }
+                            //print(direction_out[x, y]);
+                            break;
+                        case 5:
+                            map_gameobject[x, y].GetComponent<SpriteRenderer>().sprite = barrierHMiddle;
+                          
+                            if (direction_out[x, y] == 2)
+                            {
+                              //  map_gameobject[x, y].GetComponent<SpriteRenderer>().color = Color.magenta;
+                                if (x == 0 || x == rows-1)
+                                {
+                                    map_gameobject[x, y].GetComponent<SpriteRenderer>().sprite = barrierVMiddle;
+                                }
+                            }
+
+                            if (direction_out[x, y] == 3)
+                            {
+                                map_gameobject[x, y].GetComponent<SpriteRenderer>().color = Color.yellow;
+                            }
+
+                            break;
+                        case 6:
+                            map_gameobject[x, y].GetComponent<SpriteRenderer>().sprite = WallMiddleLeft;
+                            if (direction_out[x, y] == 2)
+                            {
+                                map_gameobject[x, y].GetComponent<SpriteRenderer>().sprite = WallTopRight;
+
+
+                            }
+
+                            if (direction_out[x, y] == 3)
+                            {
+                                map_gameobject[x, y].GetComponent<SpriteRenderer>().sprite = WallTopRight;
+                            }
+
+
+                          
+                            //map_gameobject[x, y].GetComponent<SpriteRenderer>().sprite = Wall_Side_BottomLeft;
+                            break;
+                        case 7:
+                            map_gameobject[x, y].GetComponent<SpriteRenderer>().sprite = WallBotRight;
+
+
+                            if (direction_out[x, y] == 4)
+                            {
+                                map_gameobject[x, y].GetComponent<SpriteRenderer>().sprite = WallTopMiddle;
+                            }
+
+                            if (direction_out[x, y] == 5)
+                            {
+                                map_gameobject[x, y].GetComponent<SpriteRenderer>().sprite = WallTopMiddle;
+                            }
+
+                            //map_gameobject[x, y].GetComponent<SpriteRenderer>().sprite = Wall_Side_TopRight;
+                            break;
+                        case 9:
+                            map_gameobject[x, y].GetComponent<SpriteRenderer>().sprite = WallMiddleRight;
+                            //   map_gameobject[x, y].GetComponent<SpriteRenderer>().color = Color.yellow;
+                            break;
+                    }
+         
+                }
+            }
+        }
+
+        //InstantiateTiles();
         InstantiateOuterWalls();
 
 
@@ -195,7 +427,7 @@ public class BoardCreator : MonoBehaviour
                 }
 
                 // Set the tile at these coordinates to Floor.
-
+                if(IsInMapRange(xCoord, yCoord))
                 Tiles[xCoord, yCoord] = (int)TileType.FLOOR;
             }
         }
@@ -310,7 +542,7 @@ public class BoardCreator : MonoBehaviour
     }
 
 
-    void InstantiateFromArray(GameObject[] prefabs, float xCoord, float yCoord)
+    GameObject InstantiateFromArray(GameObject[] prefabs, float xCoord, float yCoord)
     {
         // Create a random index for the array.
         int randomIndex = Random.Range(0, prefabs.Length);
@@ -323,6 +555,8 @@ public class BoardCreator : MonoBehaviour
         //_map[, (int)yCoord] = tileInstance;
         // Set the tile's parent to the board holder.
         tileInstance.transform.parent = boardHolder.transform;
+
+        return tileInstance;
     }
 
     public void AddSprite()

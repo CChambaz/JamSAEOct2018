@@ -773,8 +773,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d4d9022e638bc54fb6a8a7580b7a648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  columns: 40
-  rows: 40
+  columns: 30
+  rows: 30
   grid: {fileID: 372870713}
   board_creator: {fileID: 372870712}
   spawn_manager: {fileID: 272914526}
@@ -1527,8 +1527,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numRooms:
-    m_Min: 20
-    m_Max: 25
+    m_Min: 10
+    m_Max: 15
   roomWidth:
     m_Min: 6
     m_Max: 12
@@ -1536,8 +1536,8 @@ MonoBehaviour:
     m_Min: 6
     m_Max: 12
   corridorLength:
-    m_Min: 0
-    m_Max: 1
+    m_Min: 3
+    m_Max: 5
   floorTiles:
   - {fileID: 6093663543043925385, guid: 50c956c29d1d60f4ab059af76250c8eb, type: 3}
   floor:
@@ -1548,14 +1548,25 @@ MonoBehaviour:
   wallTiles:
   - {fileID: 6093663543043925385, guid: 9b93a54cbb4f5fa498482ad6e1f7785c, type: 3}
   outerWallTilesV:
-  - {fileID: 5065767473881803330, guid: af1504160c29ac945b9a6c45ae84cc5b, type: 3}
   - {fileID: 5065767473881803330, guid: 37803e8c3ef40c346a869d751c3befab, type: 3}
+  - {fileID: 5065767473881803330, guid: af1504160c29ac945b9a6c45ae84cc5b, type: 3}
   outerWallTilesH:
   - {fileID: 5065767473881803330, guid: f8699a4df435e3d4ba535b32a2a48350, type: 3}
   - {fileID: 5065767473881803330, guid: 5ec358afa547a4c479999b003826a8a2, type: 3}
   player: {fileID: 2903652671968918977, guid: 1e62d7fe501d21747bcceeebc3c78ef3, type: 3}
   key: {fileID: 0}
   door: {fileID: 0}
+  WallTopLeft: {fileID: 21300044, guid: e82e4aca0575bf14ca7b33e04ade4f4d, type: 3}
+  WallTopMiddle: {fileID: 21300046, guid: e82e4aca0575bf14ca7b33e04ade4f4d, type: 3}
+  WallTopRight: {fileID: 21300048, guid: e82e4aca0575bf14ca7b33e04ade4f4d, type: 3}
+  WallBotLeft: {fileID: 21300134, guid: e82e4aca0575bf14ca7b33e04ade4f4d, type: 3}
+  WallBotRight: {fileID: 21300138, guid: e82e4aca0575bf14ca7b33e04ade4f4d, type: 3}
+  WallMiddleLeft: {fileID: 21300114, guid: e82e4aca0575bf14ca7b33e04ade4f4d, type: 3}
+  WallMiddleRight: {fileID: 21300118, guid: e82e4aca0575bf14ca7b33e04ade4f4d, type: 3}
+  barrierHMiddle: {fileID: 21300148, guid: e82e4aca0575bf14ca7b33e04ade4f4d, type: 3}
+  barrierHLeft: {fileID: 21300146, guid: e82e4aca0575bf14ca7b33e04ade4f4d, type: 3}
+  barrierHRight: {fileID: 21300150, guid: e82e4aca0575bf14ca7b33e04ade4f4d, type: 3}
+  barrierVMiddle: {fileID: 21300140, guid: e82e4aca0575bf14ca7b33e04ade4f4d, type: 3}
 --- !u!114 &372870713
 MonoBehaviour:
   m_ObjectHideFlags: 0

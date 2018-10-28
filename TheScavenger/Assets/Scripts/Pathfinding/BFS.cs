@@ -40,11 +40,11 @@ public class BFS
         Queue<Node> tmpNeighbors = new Queue<Node>();
         tmpNeighbors.Enqueue(startingNode);
         Node currentNode = tmpNeighbors.Dequeue();
-
+        int t = 0;
         //Search a target with BFS
         while (currentNode.Position != targetNode.Position)
         {
-
+            t++;
             for (int dx = -1; dx <= 1; dx++)
             {
                 for (int dy = -1; dy <= 1; dy++)
@@ -73,10 +73,8 @@ public class BFS
                 }
             }
             currentNode = tmpNeighbors.Dequeue();
-            if (tmpNeighbors.Count == 0)
-            {
-                break;
-            }
+            if (t >= 200)
+                return null;
         }
 
 
