@@ -11,6 +11,13 @@ public class MainMenu : MonoBehaviour
     [SerializeField] float fadeSpeed;
     [SerializeField] float fadeApproximation;
 
+    TransitionManager transitionManager;
+
+    private void Start()
+    {
+        transitionManager = FindObjectOfType<TransitionManager>();
+    }
+
     public void ExitGame()
     {
         Application.Quit();
@@ -41,7 +48,10 @@ public class MainMenu : MonoBehaviour
         }
 
         if (fadeGoal == 0)
+        {
             mainMenuCanvas.interactable = false;
+            transitionManager.gameState = TransitionManager.GameState.INGAME;
+        }
         else
             mainMenuCanvas.interactable = true;
     }

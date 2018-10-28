@@ -46,8 +46,11 @@ public class EnemyController : MonoBehaviour
 
     private Vector3 walkDir = new Vector3(1, 0, 0);
 
+    bool isAlive = true;
 
     [SerializeField] float deltaPosPath;
+
+    TransitionManager transitionManager;
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +60,7 @@ public class EnemyController : MonoBehaviour
         renderer = GetComponent<SpriteRenderer>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
         sound = GetComponent<SoundWolfManager>();
+        transitionManager = FindObjectOfType<TransitionManager>();
     }
 
     // Update is called once per frame
@@ -189,14 +193,6 @@ public class EnemyController : MonoBehaviour
         return Quaternion.Euler(0, 0, Mathf.Atan2(forward.y, forward.x) * Mathf.Rad2Deg + 180);
     }
 
-
-
-
-
-
-
-
-
     //Reste immobile et a une chance sur 4 de "sentir la direction ou se trouve le joueur" si le joueur est loin, sinon il sent automatiquement
     //S'il sent le joueur, il se tourne simplement dans la bonne direction.
     private void SearchPlayer()
@@ -269,8 +265,6 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-
-
             if (distanceX > 0)
             {
                 if (walkDir.x <= 0)
@@ -365,12 +359,18 @@ public class EnemyController : MonoBehaviour
             counter_timer = 0.0f;
             state = EnemyState.Hurt;
             Dir = (transform.position - target.position).normalized;
-            if (healtPoint <= 0)
+            if (healtPoint <= 0 && isAlive)
             {
+                isAlive = false;
                 Destroy(this, 0.3f);
             }
         }
 
 
+    }
+
+    private void OnDestroy()
+    {
+        transitionManager.activeEnemyCount--;
     }
 }

@@ -10,12 +10,13 @@ public class SpawnManager: MonoBehaviour {
     Room[] rooms;
     
     Vector2[] positionSpawns;
-    
+    TransitionManager transitionManager;
 
     private int counter_enemy = 0;
 
     // Use this for initialization
     void Start () {
+        transitionManager = FindObjectOfType<TransitionManager>();
     }
 	
 	// Update is called once per frame
@@ -32,37 +33,39 @@ public class SpawnManager: MonoBehaviour {
         while (counter_enemy < countWolf)
         {
 
-                     System.Random pseudoRandom = new System.Random(DateTime.Now.Ticks.ToString().GetHashCode());
-                     int x= pseudoRandom.Next(30);
+             System.Random pseudoRandom = new System.Random(DateTime.Now.Ticks.ToString().GetHashCode());
+             int x= pseudoRandom.Next(30);
+            
+             System.Random pseudoRandom2 = new System.Random(x);
+             int y = pseudoRandom2.Next(30);
+
+
+            if (!grid[x, y].IsWall)
+            {
+                if (positionMonsters == null)
+                {
+                    positionMonsters =  new List<Vector2>();
+                    Instantiate(enemyPrefab, new Vector2(x, y), Quaternion.identity);
+                    positionMonsters.Add(new Vector2(x, y));
                     
-                     System.Random pseudoRandom2 = new System.Random(x);
-                     int y = pseudoRandom2.Next(30);
-
-
-                    if (!grid[x, y].IsWall)
+                    counter_enemy++;
+                    transitionManager.activeEnemyCount++;
+                }
+                else
+                {
+                    foreach (var position in positionMonsters)
                     {
-                        if (positionMonsters == null)
+
+                        if (x  != position.x || y != position.y)
                         {
-                            positionMonsters =  new List<Vector2>();
                             Instantiate(enemyPrefab, new Vector2(x, y), Quaternion.identity);
                             positionMonsters.Add(new Vector2(x, y));
-                            
                             counter_enemy++;
-                        }
-                        else
-                        {
-                            foreach (var position in positionMonsters)
-                            {
-
-                                if (x  != position.x || y != position.y)
-                                {
-                                    Instantiate(enemyPrefab, new Vector2(x, y), Quaternion.identity);
-                                    positionMonsters.Add(new Vector2(x, y));
-                                    counter_enemy++;
-                                }
-                            }
+                            transitionManager.activeEnemyCount++;
                         }
                     }
+                }
+            }
         }
     }
 }

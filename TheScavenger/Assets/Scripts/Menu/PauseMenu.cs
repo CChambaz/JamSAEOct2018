@@ -21,12 +21,14 @@ public class PauseMenu : MonoBehaviour
     PlayerLife playerLife;
     MainMenu mainMenu;
     InterLevelMenu interMenu;
+    TransitionManager transitionManager;
 
     private void Start()
     {
         playerLife = FindObjectOfType<PlayerLife>();
         mainMenu = FindObjectOfType<MainMenu>();
         interMenu = FindObjectOfType<InterLevelMenu>();
+        transitionManager = FindObjectOfType<TransitionManager>();
     }
 
     private void Update()
@@ -54,6 +56,8 @@ public class PauseMenu : MonoBehaviour
     public void ShowMainMenu()
     {
         Time.timeScale = 1;
+
+        transitionManager.gameState = TransitionManager.GameState.MAINMENU;
 
         mainMenu.FadeMenuUI(true);
 
