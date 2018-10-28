@@ -5,6 +5,7 @@ using UnityEngine;
 public class Trap : MonoBehaviour
 {
     TransitionManager transitionManager;
+    Animator animator;
 
     bool mapClear;
 
@@ -12,6 +13,7 @@ public class Trap : MonoBehaviour
     void Start()
     {
         transitionManager = FindObjectOfType<TransitionManager>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -19,7 +21,9 @@ public class Trap : MonoBehaviour
         if (transitionManager.activeEnemyCount <= 0)
         {
             mapClear = true;
-            return;                                     // Insert here the start of the animation
+
+            if (!animator.GetBool("isOpen"))
+                animator.SetBool("isOpen", true);
         }
     }
 
