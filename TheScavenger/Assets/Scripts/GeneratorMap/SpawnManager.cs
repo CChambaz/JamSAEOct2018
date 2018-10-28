@@ -14,16 +14,15 @@ public class SpawnManager: MonoBehaviour {
     
     Vector2[] positionSpawns;
     TransitionManager transitionManager;
+    GameManager gameManager;
+    GameManagerSample gameManagerSample;
 
     // Use this for initialization
     void Start () {
         transitionManager = FindObjectOfType<TransitionManager>();
+        gameManager = FindObjectOfType<GameManager>();
+        gameManagerSample = FindObjectOfType<GameManagerSample>();
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public void increaseWolfCount()
     {
@@ -48,10 +47,10 @@ public class SpawnManager: MonoBehaviour {
         {
 
              System.Random pseudoRandom = new System.Random(DateTime.Now.Ticks.ToString().GetHashCode());
-             int x= pseudoRandom.Next(30);
+             int x= pseudoRandom.Next(gameManager.columns);
             
              System.Random pseudoRandom2 = new System.Random(x);
-             int y = pseudoRandom2.Next(30);
+             int y = pseudoRandom2.Next(gameManager.rows);
 
 
             if (!grid[x, y].IsWall)
