@@ -5,49 +5,50 @@ using UnityEngine;
 //Applydamage a faire
 public class EnemyController : MonoBehaviour
 {
-    private const int FIELD_OF_VIEW = 50;
+    int healtPoint = 30;
+
+    private const int FIELD_OF_VIEW = 500;
     private const float DISTANCE_MIN_NODE = 0.25f;
+
+    private const float TIME_BEFORE_TO_JUMP = 0.6f;
+    private float counter_timer;
 
     private Transform target;
     private Vector2 move_monster;
     private float speed = 3.4f;
 
-    enum EnemyState
+    private SoundWolfManager sound;
+
+    public enum EnemyState
     {
         Idle,
         Follow,
         Walk,
         Jump,
-        Attack
+        Attack,
+        Hurt
     }
 
-    [SerializeField]
-    Animator anim;
-    EnemyState state;
+    [SerializeField] Animator anim;
+    public EnemyState state;
 
-    [SerializeField]
-    GameObject player;
+    [SerializeField] GameObject player;
 
-    [SerializeField]
-    float distanceRange;
+    [SerializeField] float distanceRange;
     Vector3 reachPos;
     Rigidbody2D rigid;
-    [SerializeField]
-    float jumpForce;
+    [SerializeField] float jumpForce;
     SpriteRenderer renderer;
-    [SerializeField]
-    float attackDistance;
-    [SerializeField]
-    float attackSpeed;
+    [SerializeField] float attackDistance;
+    [SerializeField] float attackSpeed;
     Vector3 basePos;
     bool flipped = false;
-    private Vector3 walkDir=new Vector3(1,0,0);
-    [SerializeField]
-    float parabolHigh;
-    private float gravity_constant=9.8f;
 
-    [SerializeField]
-    float deltaPosPath;
+    private Vector3 walkDir = new Vector3(1, 0, 0);
+
+
+    [SerializeField] float deltaPosPath;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,6 +56,7 @@ public class EnemyController : MonoBehaviour
         state = EnemyState.Idle;
         renderer = GetComponent<SpriteRenderer>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
+        sound = GetComponent<SoundWolfManager>();
     }
 
     // Update is called once per frame
@@ -66,16 +68,21 @@ public class EnemyController : MonoBehaviour
         {
             case EnemyState.Idle:
                 float distance = Vector3.Distance(transform.position, target.position);
-                if (distance > attackDistance+2) SearchPlayer();
+                if (distance > attackDistance + 2) SearchPlayer();
                 break;
             case EnemyState.Follow:
                 if (target != null)
                 {
                     move_monster = new Vector2(0.0f, 0.0f);
-                    if ((target.position - transform.position).magnitude > 1.5f)
+                    if ((target.position - transform.position).magnitude > 4.5f)
                     {
                         move();
-                        this.gameObject.transform.position += (Vector3)move_monster * Time.deltaTime * speed;
+                        this.gameObject.transform.position += (Vector3) move_monster * Time.deltaTime * speed;
+                    }
+                    else
+                    {
+                        sound.Play(SoundWolfManager.SoundWolf.Attack);
+                        state = EnemyState.Attack;
                     }
                 }
                 else
@@ -85,104 +92,139 @@ public class EnemyController : MonoBehaviour
                         target = GameObject.FindGameObjectWithTag("Player").transform;
                     }
                 }
+
                 break;
             case EnemyState.Walk:
-                 distance = Vector3.Distance(transform.position, target.position);
-                if (distance< 3f)
+                distance = Vector3.Distance(transform.position, target.position);
+                if (distance < 3f)
                 {
                     //Attack
                     walkDir = new Vector3(-walkDir.x, 0);
-                    reachPos = new Vector3(transform.position.x+(transform.position.x -player.transform.position.x / 2f),transform.position.y+3f);
+                    reachPos = new Vector3(
+                        transform.position.x + (transform.position.x - player.transform.position.x / 2f),
+                        transform.position.y + 3f);
                     basePos = transform.position;
-                    state = EnemyState.Jump;
+                    sound.Play(SoundWolfManager.SoundWolf.Attack);
+                    state = EnemyState.Attack;
+                 
                 }
                 else
-                transform.Translate(walkDir * speed);
-                
+                    transform.Translate(walkDir * speed);
+
                 break;
+
             case EnemyState.Jump:
-                Jump();
+                if (counter_timer < 0.5f)
+                {
+                    counter_timer += Time.deltaTime;
+                    Jump();
+                }
+                else
+                {
+                    dir = Vector3.zero;
+                    state = EnemyState.Follow;
+                    counter_timer = 0.0f;
+                }
+
                 break;
-            case EnemyState.Attack:Attack();
+
+            case EnemyState.Attack:
+                counter_timer += Time.deltaTime;
+                if (counter_timer >= TIME_BEFORE_TO_JUMP)
+                {
+                    counter_timer = 0.0f;
+                    Dir = Vector2.zero;
+                    state = EnemyState.Jump;
+                }
+
                 break;
-            default:SearchPlayer();
+
+            case EnemyState.Hurt:
+                counter_timer += Time.deltaTime;
+                GetComponent<SpriteRenderer>().color = Color.red;
+                transform.position += (Vector3)Dir * jumpForce;
+                if (counter_timer > 0.3f)
+                {
+                    GetComponent<SpriteRenderer>().color = Color.gray;
+                    Dir = Vector2.zero;
+                    counter_timer = 0.0f;
+                    state = EnemyState.Follow;
+                }
+                break;
+               
+            default:
+                SearchPlayer();
                 break;
         }
+
         Debug.Log("enemyState" + state);
     }
 
     private void Attack()
     {
-       
-            float nextX = Mathf.MoveTowards(gameObject.transform.position.x, player.transform.position.x, attackSpeed * Time.deltaTime);
-         Vector3  nextPosition = new Vector2(nextX,transform.position.y);
-            gameObject.transform.position = nextPosition;
-   
+
+        float nextX = Mathf.MoveTowards(gameObject.transform.position.x, target.position.x,
+            attackSpeed * Time.deltaTime);
+        Vector3 nextPosition = new Vector2(nextX, transform.position.y);
+        gameObject.transform.position += nextPosition;
+
     }
 
-    
+    Vector2 Dir = Vector2.zero;
+
     public void Jump()
     {
-        if (transform.position.x!=reachPos.x)
+        if (Dir == Vector2.zero)
         {
-            float nextX = Mathf.MoveTowards(gameObject.transform.position.x, reachPos.x, jumpForce *  Time.deltaTime);
-            float nextY = Mathf.Lerp(basePos.y, reachPos.y, (nextX - basePos.x) / parabolHigh);
-            float parabol = parabolHigh * (nextX - basePos.x) * (nextX - reachPos.x) / (-0.25f * Mathf.Pow(parabolHigh, 2));
-            Vector2 nextPosition = new Vector2(nextX, nextY + parabol);
-
-            gameObject.transform.position = nextPosition;
-
+            Dir = (target.position - transform.position).normalized;
         }
         else
         {
-            //Attack
-            state = EnemyState.Attack;
-
+            transform.position += (Vector3) Dir * jumpForce;
         }
-
     }
-  
-Quaternion LookAt2D(Vector2 forward)
-{
-    return Quaternion.Euler(0, 0, Mathf.Atan2(forward.y, forward.x) * Mathf.Rad2Deg + 180);
-}
+
+    Quaternion LookAt2D(Vector2 forward)
+    {
+        return Quaternion.Euler(0, 0, Mathf.Atan2(forward.y, forward.x) * Mathf.Rad2Deg + 180);
+    }
 
 
-    
 
 
- 
 
 
-  
+
+
+
     //Reste immobile et a une chance sur 4 de "sentir la direction ou se trouve le joueur" si le joueur est loin, sinon il sent automatiquement
     //S'il sent le joueur, il se tourne simplement dans la bonne direction.
     private void SearchPlayer()
     {
         float distance = Vector3.Distance(transform.position, target.position);
-        
-            if (distance<=distanceRange)
-            {
 
-                if (!Sniff())
-                {
-                    TurnToPlayer(false, new Vector3());
-                    state = EnemyState.Walk;
-                }
-                else
-                {
-                    state = EnemyState.Follow;
-                }
+        if (distance <= distanceRange)
+        {
+
+            if (!Sniff())
+            {
+                TurnToPlayer(false, new Vector3());
+                //state = EnemyState.Walk;
             }
             else
             {
                 state = EnemyState.Follow;
             }
+        }
+        else
+        {
+            state = EnemyState.Follow;
+        }
 
 
-        
 
-        
+
+
     }
 
 
@@ -191,7 +233,7 @@ Quaternion LookAt2D(Vector2 forward)
         Vector3 frontier = new Vector3();
         frontier = transform.position;
         Vector3 current = frontier;
-        Vector3[] visited = { frontier };
+        Vector3[] visited = {frontier};
         while (frontier != null)
         {
             current = frontier;
@@ -206,45 +248,51 @@ Quaternion LookAt2D(Vector2 forward)
                         visited[visited.Length - 1] = next;
                         break;
                     }
+
                     if (current != frontier)
                         break;
 
                 }
-                
+
             }
 
-            
+
         }
 
     }
+
     private Vector3[] neighbors(Vector3 current)
     {
         Vector3[] arrayPos = new Vector3[] { };
-        
+
         Vector3 leftPos = new Vector3(current.x - deltaPosPath, current.y);
         RaycastHit2D rayleft = Physics2D.Raycast(transform.position, leftPos);
-        if(rayleft.collider==null|| (rayleft.collider != null && rayleft.collider.tag=="Player"))
+        if (rayleft.collider == null || (rayleft.collider != null && rayleft.collider.tag == "Player"))
         {
             arrayPos[arrayPos.Length - 1] = leftPos;
         }
+
         Vector3 rightPos = new Vector3(current.x + deltaPosPath, current.y);
         RaycastHit2D rayRight = Physics2D.Raycast(transform.position, rightPos);
         if (rayRight.collider == null || (rayRight.collider != null && rayRight.collider.tag == "Player"))
         {
             arrayPos[arrayPos.Length - 1] = rightPos;
         }
+
         Vector3 upPos = new Vector3(current.x, current.y + deltaPosPath);
         RaycastHit2D rayUp = Physics2D.Raycast(transform.position, upPos);
         if (rayUp.collider == null || (rayUp.collider != null && rayUp.collider.tag == "Player"))
         {
             arrayPos[arrayPos.Length - 1] = upPos;
         }
+
         Vector3 downPos = new Vector3(current.x, current.y - deltaPosPath);
         RaycastHit2D rayDown = Physics2D.Raycast(transform.position, downPos);
         if (rayDown.collider == null || (rayDown.collider != null && rayDown.collider.tag == "Player"))
         {
             arrayPos[arrayPos.Length - 1] = downPos;
         }
+
         return arrayPos;
     }
 
@@ -263,27 +311,29 @@ Quaternion LookAt2D(Vector2 forward)
         if (smart)
         {
             walkDir = pos;
-            if(walkDir.x>0)
+            if (walkDir.x > 0)
             {
                 if (flipped)
                 {
                     renderer.flipX = false;
                     flipped = false;
                 }
+
                 anim.SetBool("isWalkingH", true);
             }
 
-            if(walkDir.x < 0)
+            if (walkDir.x < 0)
             {
                 if (!flipped)
                 {
                     renderer.flipX = true;
                     flipped = true;
                 }
+
                 anim.SetBool("isWalkingH", true);
             }
 
-            if(walkDir.y>0)
+            if (walkDir.y > 0)
             {
                 anim.SetBool("isWalkingUp", true);
                 anim.SetBool("isWalkingDown", false);
@@ -309,6 +359,7 @@ Quaternion LookAt2D(Vector2 forward)
                     renderer.flipX = false;
                     flipped = false;
                 }
+
                 anim.SetBool("isWalkingH", true);
             }
             else
@@ -322,6 +373,7 @@ Quaternion LookAt2D(Vector2 forward)
                     renderer.flipX = true;
                     flipped = true;
                 }
+
                 anim.SetBool("isWalkingH", true);
             }
 
@@ -370,15 +422,33 @@ Quaternion LookAt2D(Vector2 forward)
 
             Path = bfs.CalculateBFS(GameObject.Find("BoardCreator").GetComponent<Grid>(), target.transform.position,
                 transform.position);
-            if ((transform.position - new Vector3((int)Path[0].Position.x, (int)Path[0].Position.y)).sqrMagnitude <=
+            if ((transform.position - new Vector3((int) Path[0].Position.x, (int) Path[0].Position.y)).sqrMagnitude <=
                 DISTANCE_MIN_NODE)
             {
                 Path.RemoveAt(0);
             }
 
-            move_monster = (new Vector3((int)Path[0].Position.x, (int)Path[0].Position.y) - transform.position).normalized;
+            move_monster = (new Vector3((int) Path[0].Position.x, (int) Path[0].Position.y) - transform.position)
+                .normalized;
             //this.gameObject.GetComponent<Rigidbody2D>().velocity = (speed) * dir;
         }
     }
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == ("PlayerAttack"))
+        {
+            Debug.Log("HURT");
+            healtPoint -= target.GetComponent<PlayerController>().GetForceAttack();
+            counter_timer = 0.0f;
+            state = EnemyState.Hurt;
+            Dir = (transform.position - target.position).normalized;
+            if (healtPoint <= 0)
+            {
+                Destroy(this, 0.3f);
+            }
+        }
+
+
+    }
 }

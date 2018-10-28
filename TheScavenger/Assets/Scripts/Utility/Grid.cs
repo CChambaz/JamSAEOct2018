@@ -16,7 +16,7 @@ public class Grid : MonoBehaviour {
     public LayerMask WallMask;
     private Vector2 gridWorldSize;
     public float nodeRadius;
-    public float Distance;
+    public float distance;
     private BoardCreator bord_creator;
 
     Node[,] grid;
@@ -43,12 +43,12 @@ public class Grid : MonoBehaviour {
     void CreateGrid()
     {
         grid = new Node[gridSizeX, gridSizeY];
-        Vector3 bottomLeft = transform.position - Vector3.right * nodeRadius - Vector3.up * nodeRadius;
+        Vector3 bottomLeft = transform.position - Vector3.right * distance - Vector3.up * distance;
         for(int y = 0; y < gridSizeY; y++)
         {
             for (int x = 0; x < gridSizeX; x++)
             {
-                Vector3 worldPoint = bottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.up * (y * nodeDiameter + nodeRadius);
+                Vector3 worldPoint = bottomLeft + Vector3.right * (x * nodeDiameter + distance) + Vector3.up * (y * nodeDiameter + distance);
                 bool Wall = true;
                 int[,] tiles = new int[(int)gridWorldSize.x, (int)gridWorldSize.y];
                 tiles = bord_creator.Tiles;
