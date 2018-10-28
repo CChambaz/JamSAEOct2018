@@ -38,7 +38,7 @@ public class GameManagerSample : MonoBehaviour {
     {
         board_creator.Init(columns, rows);
         grid.Init(board_creator, columns, rows);
-        spawn_manager.SpawnEnemies(grid);
+        //spawn_manager.SpawnEnemies(grid);
 
         //UI
       //  Level.text = Level.text + GameObject.Find("Scoring").GetComponent<ScoringManger>().GetLevel().ToString();
